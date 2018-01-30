@@ -116,7 +116,7 @@ public class ACL {
                 }
             case .geoip:
                 if let country = db.lookup(ip) {
-                    if country.isoCode == rule.value! {
+                    if country.isoCode.lowercased() == rule.value! {
                         DDLogInfo("country \(country.isoCode), \(rule.value ?? "")")
                         DDLogInfo("use rule: \(rule.description)")
                         return rule.action == .proxy
