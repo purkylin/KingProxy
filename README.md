@@ -4,14 +4,19 @@ A http proxy like privoxy
 * Http(s) proxy
 * Fortward http to socks5 proxy
 * Partial support surge rule
+## Requirement
+* Swift4
+* Xcode9
+* iOS/macOS
 ## Usage
 ```swift
 ACL.shared?.load(configFile: "your config file")
 httpProxy = HttpProxy(address: "127.0.0.1", port: 8898)
-httpProxy.forwardProxy = ForwardProxy(type: .socks5, port: 8899, host: "127.0.0.1")
+httpProxy.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 8899)
 httpProxy.start()
 ```
 ## Install
-`github "purkylin/KingHttpProxy"`
+* Carthage
+`github "purkylin/KingHttpProxy" "master"`
 ## TODO
-
+* macOS framework target
