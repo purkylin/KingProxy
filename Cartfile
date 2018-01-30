@@ -1,0 +1,3 @@
+github "CocoaLumberjack/CocoaLumberjack"
+github "lexrus/MMDB-Swift"
+github "robbiehanson/CocoaAsyncSocket" "master"

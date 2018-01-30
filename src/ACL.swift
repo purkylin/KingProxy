@@ -50,14 +50,14 @@ class Rule {
     }
 }
 
-class ACL {
-    static var shared = ACL()
+public class ACL {
+    public static var shared = ACL()
     
     var db: MMDB
     var rules = [Rule]()
     var defaultAction: RuleAction = .proxy
     
-    init?() {
+    public init?() {
         guard let db = MMDB() else {
             DDLogError("Init mmdb failed")
             return nil
@@ -66,7 +66,8 @@ class ACL {
         self.db = db
     }
     
-    func load(configFile: String) {
+    /// Load rule file, only support local file
+    public func load(configFile: String) {
         do {
             DDLogVerbose("[acl] Load rule file...")
             let raw = try String(contentsOfFile: configFile)

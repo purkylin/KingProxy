@@ -1,0 +1,3 @@
+github "CocoaLumberjack/CocoaLumberjack" "3.4.1"
+github "lexrus/MMDB-Swift" "0.2.7"
+github "robbiehanson/CocoaAsyncSocket" "c20bd9b7cc34ccf09fbe8299f9bf976158394b86"

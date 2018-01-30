@@ -1,0 +1,605 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0DEA38AA20201F4200B93F0A /* KingProxy_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DEA38A820201F4200B93F0A /* KingProxy_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0DEA38B820201F6F00B93F0A /* ACL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B020201F6F00B93F0A /* ACL.swift */; };
+		0DEA38B920201F6F00B93F0A /* Surge.conf in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA38B120201F6F00B93F0A /* Surge.conf */; };
+		0DEA38BA20201F6F00B93F0A /* HttpHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B220201F6F00B93F0A /* HttpHeader.swift */; };
+		0DEA38BB20201F6F00B93F0A /* HttpProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B320201F6F00B93F0A /* HttpProxy.swift */; };
+		0DEA38BC20201F6F00B93F0A /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B420201F6F00B93F0A /* Packet.swift */; };
+		0DEA38BD20201F6F00B93F0A /* HttpSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B520201F6F00B93F0A /* HttpSession.swift */; };
+		0DEA38C420201FB100B93F0A /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38C020201FB000B93F0A /* CocoaLumberjackSwift.framework */; };
+		0DEA38C520201FB100B93F0A /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38C120201FB000B93F0A /* MMDB.framework */; };
+		0DEA38C620201FB100B93F0A /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38C220201FB100B93F0A /* CocoaLumberjack.framework */; };
+		0DEA38C720201FB100B93F0A /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38C320201FB100B93F0A /* CocoaAsyncSocket.framework */; };
+		0DEA38C92020209700B93F0A /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38C82020209600B93F0A /* Util.swift */; };
+		0DEA390A2020218E00B93F0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA39092020218E00B93F0A /* AppDelegate.swift */; };
+		0DEA390C2020218E00B93F0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA390B2020218E00B93F0A /* ViewController.swift */; };
+		0DEA390F2020218E00B93F0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA390D2020218E00B93F0A /* Main.storyboard */; };
+		0DEA39112020218E00B93F0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA39102020218E00B93F0A /* Assets.xcassets */; };
+		0DEA39142020218E00B93F0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA39122020218E00B93F0A /* LaunchScreen.storyboard */; };
+		0DEA391A20203AB700B93F0A /* KingProxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38A620201F4200B93F0A /* KingProxy.framework */; };
+		0DEA391B20203AB700B93F0A /* KingProxy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38A620201F4200B93F0A /* KingProxy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0DEA391F20203AE200B93F0A /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38C320201FB100B93F0A /* CocoaAsyncSocket.framework */; };
+		0DEA392020203AE200B93F0A /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38C320201FB100B93F0A /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0DEA392120203AE200B93F0A /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38C220201FB100B93F0A /* CocoaLumberjack.framework */; };
+		0DEA392220203AE200B93F0A /* CocoaLumberjack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38C220201FB100B93F0A /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0DEA392320203AE200B93F0A /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38C020201FB000B93F0A /* CocoaLumberjackSwift.framework */; };
+		0DEA392420203AE200B93F0A /* CocoaLumberjackSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38C020201FB000B93F0A /* CocoaLumberjackSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0DEA392520203AE200B93F0A /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38C120201FB000B93F0A /* MMDB.framework */; };
+		0DEA392620203AE200B93F0A /* MMDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38C120201FB000B93F0A /* MMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0DEA391C20203AB700B93F0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DEA388D20201EF100B93F0A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0DEA38A520201F4200B93F0A;
+			remoteInfo = "KingProxy-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0DEA391E20203AB700B93F0A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0DEA392620203AE200B93F0A /* MMDB.framework in Embed Frameworks */,
+				0DEA392420203AE200B93F0A /* CocoaLumberjackSwift.framework in Embed Frameworks */,
+				0DEA392020203AE200B93F0A /* CocoaAsyncSocket.framework in Embed Frameworks */,
+				0DEA392220203AE200B93F0A /* CocoaLumberjack.framework in Embed Frameworks */,
+				0DEA391B20203AB700B93F0A /* KingProxy.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0DEA38A620201F4200B93F0A /* KingProxy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KingProxy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DEA38A820201F4200B93F0A /* KingProxy_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KingProxy_iOS.h; sourceTree = "<group>"; };
+		0DEA38A920201F4200B93F0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0DEA38B020201F6F00B93F0A /* ACL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACL.swift; sourceTree = "<group>"; };
+		0DEA38B120201F6F00B93F0A /* Surge.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Surge.conf; sourceTree = "<group>"; };
+		0DEA38B220201F6F00B93F0A /* HttpHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHeader.swift; sourceTree = "<group>"; };
+		0DEA38B320201F6F00B93F0A /* HttpProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpProxy.swift; sourceTree = "<group>"; };
+		0DEA38B420201F6F00B93F0A /* Packet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
+		0DEA38B520201F6F00B93F0A /* HttpSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpSession.swift; sourceTree = "<group>"; };
+		0DEA38C020201FB000B93F0A /* CocoaLumberjackSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjackSwift.framework; path = Carthage/Build/iOS/CocoaLumberjackSwift.framework; sourceTree = "<group>"; };
+		0DEA38C120201FB000B93F0A /* MMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMDB.framework; path = Carthage/Build/iOS/MMDB.framework; sourceTree = "<group>"; };
+		0DEA38C220201FB100B93F0A /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = Carthage/Build/iOS/CocoaLumberjack.framework; sourceTree = "<group>"; };
+		0DEA38C320201FB100B93F0A /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
+		0DEA38C82020209600B93F0A /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		0DEA39072020218E00B93F0A /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DEA39092020218E00B93F0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0DEA390B2020218E00B93F0A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0DEA390E2020218E00B93F0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0DEA39102020218E00B93F0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0DEA39132020218E00B93F0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0DEA39152020218E00B93F0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0DEA38A220201F4200B93F0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DEA38C420201FB100B93F0A /* CocoaLumberjackSwift.framework in Frameworks */,
+				0DEA38C520201FB100B93F0A /* MMDB.framework in Frameworks */,
+				0DEA38C620201FB100B93F0A /* CocoaLumberjack.framework in Frameworks */,
+				0DEA38C720201FB100B93F0A /* CocoaAsyncSocket.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DEA39042020218E00B93F0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DEA392520203AE200B93F0A /* MMDB.framework in Frameworks */,
+				0DEA392320203AE200B93F0A /* CocoaLumberjackSwift.framework in Frameworks */,
+				0DEA391F20203AE200B93F0A /* CocoaAsyncSocket.framework in Frameworks */,
+				0DEA392120203AE200B93F0A /* CocoaLumberjack.framework in Frameworks */,
+				0DEA391A20203AB700B93F0A /* KingProxy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0DEA388C20201EF100B93F0A = {
+			isa = PBXGroup;
+			children = (
+				0DEA38AE20201F6F00B93F0A /* src */,
+				0DEA38A720201F4200B93F0A /* KingProxy-iOS */,
+				0DEA39082020218E00B93F0A /* Demo */,
+				0DEA389720201EF100B93F0A /* Products */,
+				0DEA38BF20201FB000B93F0A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0DEA389720201EF100B93F0A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0DEA38A620201F4200B93F0A /* KingProxy.framework */,
+				0DEA39072020218E00B93F0A /* Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0DEA38A720201F4200B93F0A /* KingProxy-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				0DEA38A820201F4200B93F0A /* KingProxy_iOS.h */,
+				0DEA38A920201F4200B93F0A /* Info.plist */,
+			);
+			path = "KingProxy-iOS";
+			sourceTree = "<group>";
+		};
+		0DEA38AE20201F6F00B93F0A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				0DEA38B020201F6F00B93F0A /* ACL.swift */,
+				0DEA38B120201F6F00B93F0A /* Surge.conf */,
+				0DEA38B220201F6F00B93F0A /* HttpHeader.swift */,
+				0DEA38B320201F6F00B93F0A /* HttpProxy.swift */,
+				0DEA38B420201F6F00B93F0A /* Packet.swift */,
+				0DEA38B520201F6F00B93F0A /* HttpSession.swift */,
+				0DEA38C82020209600B93F0A /* Util.swift */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		0DEA38BF20201FB000B93F0A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0DEA38C320201FB100B93F0A /* CocoaAsyncSocket.framework */,
+				0DEA38C220201FB100B93F0A /* CocoaLumberjack.framework */,
+				0DEA38C020201FB000B93F0A /* CocoaLumberjackSwift.framework */,
+				0DEA38C120201FB000B93F0A /* MMDB.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0DEA39082020218E00B93F0A /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				0DEA39092020218E00B93F0A /* AppDelegate.swift */,
+				0DEA390B2020218E00B93F0A /* ViewController.swift */,
+				0DEA390D2020218E00B93F0A /* Main.storyboard */,
+				0DEA39102020218E00B93F0A /* Assets.xcassets */,
+				0DEA39122020218E00B93F0A /* LaunchScreen.storyboard */,
+				0DEA39152020218E00B93F0A /* Info.plist */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0DEA38A320201F4200B93F0A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DEA38AA20201F4200B93F0A /* KingProxy_iOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0DEA38A520201F4200B93F0A /* KingProxy-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0DEA38AB20201F4200B93F0A /* Build configuration list for PBXNativeTarget "KingProxy-iOS" */;
+			buildPhases = (
+				0DEA38A120201F4200B93F0A /* Sources */,
+				0DEA38A220201F4200B93F0A /* Frameworks */,
+				0DEA38A320201F4200B93F0A /* Headers */,
+				0DEA38A420201F4200B93F0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KingProxy-iOS";
+			productName = "KingProxy-iOS";
+			productReference = 0DEA38A620201F4200B93F0A /* KingProxy.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		0DEA39062020218E00B93F0A /* Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0DEA39162020218E00B93F0A /* Build configuration list for PBXNativeTarget "Demo" */;
+			buildPhases = (
+				0DEA39032020218E00B93F0A /* Sources */,
+				0DEA39042020218E00B93F0A /* Frameworks */,
+				0DEA39052020218E00B93F0A /* Resources */,
+				0DEA391920203A7400B93F0A /* Carthage */,
+				0DEA391E20203AB700B93F0A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0DEA391D20203AB700B93F0A /* PBXTargetDependency */,
+			);
+			name = Demo;
+			productName = Demo;
+			productReference = 0DEA39072020218E00B93F0A /* Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0DEA388D20201EF100B93F0A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Purkylin King";
+				TargetAttributes = {
+					0DEA38A520201F4200B93F0A = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					0DEA39062020218E00B93F0A = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 0DEA389020201EF100B93F0A /* Build configuration list for PBXProject "KingProxy" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0DEA388C20201EF100B93F0A;
+			productRefGroup = 0DEA389720201EF100B93F0A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0DEA38A520201F4200B93F0A /* KingProxy-iOS */,
+				0DEA39062020218E00B93F0A /* Demo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0DEA38A420201F4200B93F0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DEA38B920201F6F00B93F0A /* Surge.conf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DEA39052020218E00B93F0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DEA39142020218E00B93F0A /* LaunchScreen.storyboard in Resources */,
+				0DEA39112020218E00B93F0A /* Assets.xcassets in Resources */,
+				0DEA390F2020218E00B93F0A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0DEA391920203A7400B93F0A /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0DEA38A120201F4200B93F0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DEA38BD20201F6F00B93F0A /* HttpSession.swift in Sources */,
+				0DEA38C92020209700B93F0A /* Util.swift in Sources */,
+				0DEA38BB20201F6F00B93F0A /* HttpProxy.swift in Sources */,
+				0DEA38B820201F6F00B93F0A /* ACL.swift in Sources */,
+				0DEA38BC20201F6F00B93F0A /* Packet.swift in Sources */,
+				0DEA38BA20201F6F00B93F0A /* HttpHeader.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DEA39032020218E00B93F0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DEA390C2020218E00B93F0A /* ViewController.swift in Sources */,
+				0DEA390A2020218E00B93F0A /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0DEA391D20203AB700B93F0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0DEA38A520201F4200B93F0A /* KingProxy-iOS */;
+			targetProxy = 0DEA391C20203AB700B93F0A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0DEA390D2020218E00B93F0A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0DEA390E2020218E00B93F0A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0DEA39122020218E00B93F0A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0DEA39132020218E00B93F0A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0DEA389C20201EF100B93F0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0DEA389D20201EF100B93F0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		0DEA38AC20201F4200B93F0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QJSM3KYT6N;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "KingProxy-iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.purkylin.KingProxy;
+				PRODUCT_MODULE_NAME = KingProxy;
+				PRODUCT_NAME = KingProxy;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0DEA38AD20201F4200B93F0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QJSM3KYT6N;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "KingProxy-iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.purkylin.KingProxy;
+				PRODUCT_MODULE_NAME = KingProxy;
+				PRODUCT_NAME = KingProxy;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0DEA39172020218E00B93F0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QJSM3KYT6N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.purkylin.Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0DEA39182020218E00B93F0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QJSM3KYT6N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.purkylin.Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0DEA389020201EF100B93F0A /* Build configuration list for PBXProject "KingProxy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DEA389C20201EF100B93F0A /* Debug */,
+				0DEA389D20201EF100B93F0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0DEA38AB20201F4200B93F0A /* Build configuration list for PBXNativeTarget "KingProxy-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DEA38AC20201F4200B93F0A /* Debug */,
+				0DEA38AD20201F4200B93F0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0DEA39162020218E00B93F0A /* Build configuration list for PBXNativeTarget "Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DEA39172020218E00B93F0A /* Debug */,
+				0DEA39182020218E00B93F0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0DEA388D20201EF100B93F0A /* Project object */;
+}

@@ -10,17 +10,26 @@ import Foundation
 import CocoaAsyncSocket
 import CocoaLumberjackSwift
 
-//public enum ProxyType {
-//    case http, socks5
-//}
+public enum ProxyType: String {
+    case http = "Http"
+    case socks5 = "Socks5"
+    case shadowsocks = "Shadowsocks"
+}
 
 public struct ForwardProxy {
-    let type: ProxyType
-    let port: UInt16
-    let host: String
+    public let type: ProxyType
+    public let host: String
+    public let port: UInt16
+    
+    public init(type: ProxyType, host: String, port: UInt16) {
+        self.type = type
+        self.host = host
+        self.port = port
+    }
 }
 
 public class HttpProxy: NSObject {
+    /// Set forward proxy
     public var forwardProxy: ForwardProxy?
     
     private var address: String
@@ -28,7 +37,8 @@ public class HttpProxy: NSObject {
     
     private var sessions = Set<HttpSession>()
     
-    init(address: String, port: UInt16) {
+    /// Init server with listen host and port
+    public init(address: String, port: UInt16) {
         self.address = address
         self.port = port
         super.init()
@@ -40,6 +50,7 @@ public class HttpProxy: NSObject {
     
     private var listenSocket: GCDAsyncSocket!
     
+    /// Start proxy server
     public func start() {
         do {
 #if os(macOS)
@@ -53,6 +64,7 @@ public class HttpProxy: NSObject {
         }
     }
     
+    /// Stop proxy server
     public func stop() {
         listenSocket.disconnectAfterWriting()
         DDLogInfo("[http] Stop http proxy server")
