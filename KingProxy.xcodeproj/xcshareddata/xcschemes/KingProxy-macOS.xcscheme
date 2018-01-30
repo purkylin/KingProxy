@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0DEA38A520201F4200B93F0A"
-               BuildableName = "KingProxy.framework"
-               BlueprintName = "KingProxy-iOS"
+               BlueprintIdentifier = "0DEA392C202068DD00B93F0A"
+               BuildableName = "KingProxy_macOS.framework"
+               BlueprintName = "KingProxy-macOS"
                ReferencedContainer = "container:KingProxy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0DEA38A520201F4200B93F0A"
-            BuildableName = "KingProxy.framework"
-            BlueprintName = "KingProxy-iOS"
+            BlueprintIdentifier = "0DEA392C202068DD00B93F0A"
+            BuildableName = "KingProxy_macOS.framework"
+            BlueprintName = "KingProxy-macOS"
             ReferencedContainer = "container:KingProxy.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +65,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0DEA38A520201F4200B93F0A"
-            BuildableName = "KingProxy.framework"
-            BlueprintName = "KingProxy-iOS"
+            BlueprintIdentifier = "0DEA392C202068DD00B93F0A"
+            BuildableName = "KingProxy_macOS.framework"
+            BlueprintName = "KingProxy-macOS"
             ReferencedContainer = "container:KingProxy.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

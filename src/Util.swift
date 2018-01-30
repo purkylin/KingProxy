@@ -6,7 +6,7 @@
 //  Copyright © 2018年 Purkylin King. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 extension Data {
     var utf8: String? {
