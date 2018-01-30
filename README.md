@@ -7,7 +7,7 @@ A http proxy like privoxy
 ## Requirement
 * Swift4
 * Xcode9
-* iOS/macOS
+* iOS 10.0/macOS 10.12
 ## Usage
 ```swift
 ACL.shared?.load(configFile: "your config file")
@@ -19,4 +19,5 @@ httpProxy.start()
 * Carthage
 `github "purkylin/KingHttpProxy" "master"`
 ## TODO
-* macOS framework target
+
+
