@@ -17,7 +17,7 @@ func delay(_ interval: TimeInterval, task: @escaping ()->()) {
 }
 
 class ViewController: UIViewController {
-    let server = HttpProxy(address: "127.0.0.1", port: 8889)
+    let server = KingHttpProxy(address: "127.0.0.1", port: 8889)
     
     override func viewDidLoad() {
         super.viewDidLoad()

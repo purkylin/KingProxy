@@ -45,7 +45,7 @@ public class HttpSession: NSObject {
     
     private var status: Status = .initial
     private var isSecure = false
-    private var useProxy = true
+    private var useProxy = false
     
     private var receviedData: Data?
     private var header: HttpHeader!
@@ -67,10 +67,11 @@ public class HttpSession: NSObject {
         if let proxy = forwardProxy {
             switch proxy.type {
             case .http:
-                break
+                DDLogError("Not support forward to http proxy")
             case .socks5:
-                break
+                useProxy = true
             case .shadowsocks:
+                DDLogError("Not support forward to shadowsocks proxy")
                 break
             }
         }

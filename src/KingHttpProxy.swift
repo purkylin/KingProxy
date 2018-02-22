@@ -28,7 +28,7 @@ public struct ForwardProxy {
     }
 }
 
-public class HttpProxy: NSObject {
+public class KingHttpProxy: NSObject {
     /// Set forward proxy
     public var forwardProxy: ForwardProxy?
     
@@ -36,6 +36,7 @@ public class HttpProxy: NSObject {
     private var port: UInt16
     
     private var sessions = Set<HttpSession>()
+    private var listenSocket: GCDAsyncSocket!
     
     /// Init server with listen host and port
     public init(address: String, port: UInt16) {
@@ -44,11 +45,10 @@ public class HttpProxy: NSObject {
         super.init()
         
         let queue = DispatchQueue(label: "com.purkylin.http")
-        let sockQueue = DispatchQueue(label: "com.purkylin.http.sock1", qos: .background, attributes: [.concurrent], autoreleaseFrequency: .inherit, target: nil)
+        let sockQueue = DispatchQueue(label: "com.purkylin.http.sock", qos: .background, attributes: [.concurrent], autoreleaseFrequency: .inherit, target: nil)
         listenSocket = GCDAsyncSocket(delegate: self, delegateQueue: queue, socketQueue: sockQueue)
     }
     
-    private var listenSocket: GCDAsyncSocket!
     
     /// Start proxy server
     public func start() {
@@ -71,7 +71,7 @@ public class HttpProxy: NSObject {
     }
 }
 
-extension HttpProxy: GCDAsyncSocketDelegate, HttpSessionDelegate {
+extension KingHttpProxy: GCDAsyncSocketDelegate, HttpSessionDelegate {
     public func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
         let session = HttpSession(socket: newSocket, proxy: forwardProxy)
         sessions.insert(session)
