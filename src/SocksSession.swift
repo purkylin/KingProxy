@@ -236,7 +236,7 @@ extension SocksSession: GCDAsyncSocketDelegate {
                 
                 // TODO opticalize
                 outgoingSocket.write(connectData, withTimeout: -1, tag: 0)
-                outgoingSocket.readData(toLength: 10, withTimeout: -1, tag: ReadTag.readProxyConnect.rawValue)
+                outgoingSocket.readData(toLength: 10, withTimeout: 5, tag: ReadTag.readProxyConnect.rawValue)
             })
         case .readProxyConnect:
             // TODO Deal with
@@ -264,9 +264,10 @@ extension SocksSession: GCDAsyncSocketDelegate {
          +----+-----+-------+------+----------+----------+
          */
         var data = Data()
-        #if TUN2SOCK_PROXY
+        #if !TUN2SOCK_PROXY
             data.append(contentsOf: [0x05, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
         #else
+            // 下面的代码原用于macOS, 建议不再使用
             data.append(contentsOf: [0x05, 0x00, 0x00, 0x03, UInt8(host.count)])
             data.append(host.data(using: .utf8)!) // host
             
@@ -280,8 +281,7 @@ extension SocksSession: GCDAsyncSocketDelegate {
             proxySocket.write(data, withTimeout: -1, tag: 0)
             
             outgoingSocket.write(Data(bytes: [0x05, 0x01, 0x00]), withTimeout: -1, tag: 0)
-            outgoingSocket.readData(toLength: 2, withTimeout: -1, tag: ReadTag.readProxyVersion.rawValue)
-            return
+            outgoingSocket.readData(toLength: 2, withTimeout: 5, tag: ReadTag.readProxyVersion.rawValue)
         } else {
             proxySocket.write(data, withTimeout: -1, tag: 0)
             proxySocket.readData(withTimeout: -1, tag: ReadTag.readIncoming.rawValue)
