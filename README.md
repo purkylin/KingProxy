@@ -25,6 +25,6 @@ socksProxy.start()
 ```
 ## Install
 * Carthage
-`github "purkylin/KingHttpProxy" "master"`
+`github "purkylin/KingProxy" "master"`
 ## TODO
 
