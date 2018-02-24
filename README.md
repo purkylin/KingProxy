@@ -1,5 +1,5 @@
 # KingProxy
-A http proxy can forward http to socks and socks to socks base rule
+A proxy can forward http to socks and socks to socks base rule
 ## Feature
 * Http(s) proxy
 * Forward http to socks5 proxy
