@@ -32,26 +32,27 @@ public class KingHttpProxy: NSObject {
     /// Set forward proxy
     public var forwardProxy: ForwardProxy?
     
-    private var address: String
-    private var port: UInt16
+    private var address: String = "127.0.0.1"
+    private var port: UInt16 = 0
     
     private var sessions = Set<HttpSession>()
     private var listenSocket: GCDAsyncSocket!
     
-    /// Init server with listen host and port
-    public init(address: String, port: UInt16) {
-        self.address = address
-        self.port = port
+    public override init() {
         super.init()
-        
         let queue = DispatchQueue(label: "com.purkylin.http")
         let sockQueue = DispatchQueue(label: "com.purkylin.http.sock", qos: .background, attributes: [.concurrent], autoreleaseFrequency: .inherit, target: nil)
         listenSocket = GCDAsyncSocket(delegate: self, delegateQueue: queue, socketQueue: sockQueue)
     }
     
+    /// Init server with listen host and port
+    public convenience init(address: String) {
+        self.init(address: address)
+        self.address = address
+    }
     
-    /// Start proxy server
-    public func start() {
+    /// Start server, return lister port if succes else return 0
+    public func start(on port: UInt16) -> UInt16 {
         do {
 #if os(macOS)
         try listenSocket.accept(onPort: port)
@@ -59,9 +60,17 @@ public class KingHttpProxy: NSObject {
         try listenSocket.accept(onInterface: address, port: port)
 #endif
             DDLogInfo("[http] Start http proxy on port:\(port) ok")
+            self.port = listenSocket.localPort
+            return self.port
         } catch let e {
             DDLogError("[http] Start http proxy failed: \(e.localizedDescription)")
+            self.port = 0
+            return self.port
         }
+    }
+    
+    public func start() -> UInt16{
+        return start(on: 0)
     }
     
     /// Stop proxy server

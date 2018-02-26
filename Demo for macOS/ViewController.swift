@@ -41,7 +41,11 @@ class ViewController: NSViewController {
 //        server.start()
         
         socksServer.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 1086)
-        socksServer.start()
+        _ = socksServer.start()
+        
+        let server2 = KingSocksProxy()
+        let port = server2.start()
+        print(port)
 
     }
     

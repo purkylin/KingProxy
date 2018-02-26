@@ -17,7 +17,7 @@ func delay(_ interval: TimeInterval, task: @escaping ()->()) {
 }
 
 class ViewController: UIViewController {
-    let server = KingHttpProxy(address: "127.0.0.1", port: 8889)
+    let server = KingHttpProxy()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         delay(1) {
             // ACL.shared?.load(configFile: "your config file")
             self.server.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 8012)
-            self.server.start()
+            _ = self.server.start()
         }
     }
 }
