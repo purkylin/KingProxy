@@ -14,17 +14,19 @@ A proxy can forward http to socks and socks to socks base rule
 ACL.shared?.load(configFile: "your config file")
 
 // http
-httpProxy = KingHttpProxy(address: "127.0.0.1", port: 8898)
+httpProxy = KingHttpProxy()
 httpProxy.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 8899)
-httpProxy.start()
+_ = httpProxy.start(on: 8899)
 
 // socks
-socksProxy = KingSocksProxy(address: "127.0.0.1", port: 8898)
+socksProxy = KingSocksProxy()
 socksProxy.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 8899)
-socksProxy.start()
+_ = socksProxy.start() // Select a free port
 ```
 ## Install
 * Carthage
 `github "purkylin/KingProxy" "master"`
 ## TODO
+* Stable api
+* Implementent KingDNSProxy composent
 
