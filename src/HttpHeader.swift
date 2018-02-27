@@ -28,7 +28,7 @@ func relativePath(source: String) -> String {
     }
 }
 
-open class HttpHeader: CustomStringConvertible {
+class HttpHeader: CustomStringConvertible {
     var method: String
     var isConnect: Bool = false
     var path: String
@@ -41,7 +41,7 @@ open class HttpHeader: CustomStringConvertible {
     var isSecure: Bool = false
     var isExpect: Bool = false
     
-    public var headers = [(String, String)]()
+    var headers = [(String, String)]()
     
     var rawData: Data
     var firstLine: String? = nil
@@ -50,7 +50,7 @@ open class HttpHeader: CustomStringConvertible {
         case invalidHeader, invaldConnection, invalidHost, illegalEncoding
     }
     
-    public init(data: Data) throws {
+    init(data: Data) throws {
         rawData = data
         
         if let raw = String(data: data, encoding: .utf8) {
@@ -180,7 +180,7 @@ open class HttpHeader: CustomStringConvertible {
         headers.append((key, value))
     }
     
-    public var description: String {
+    var description: String {
         if let s = String(data: rawData, encoding: .utf8) {
             return s
         } else {

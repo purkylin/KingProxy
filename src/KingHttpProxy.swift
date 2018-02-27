@@ -60,8 +60,8 @@ public class KingHttpProxy: NSObject {
 #else
         try listenSocket.accept(onInterface: address, port: port)
 #endif
-            DDLogInfo("[http] Start http proxy on port:\(port) ok")
             self.port = listenSocket.localPort
+            DDLogInfo("[http] Start http proxy on port:\(port) ok")
             return self.port
         } catch let e {
             DDLogError("[http] Start http proxy failed: \(e.localizedDescription)")
