@@ -70,6 +70,8 @@ public class SocksSession: NSObject {
     
     private let connectTimeout: TimeInterval = 4
     private let writeTimeout: TimeInterval = 5
+    private let readTimeout: TimeInterval = 5
+
     private var forwardProxy: ForwardProxy?
     private var useProxy = false
     private var state: SocksState
@@ -102,7 +104,7 @@ public class SocksSession: NSObject {
             }
         }
         
-        let queue = DispatchQueue(label: "com.purkylin.kingproxy.socks.session.outgoing")
+        let queue = DispatchQueue(label: "com.purkylin.kingproxy.sockssession.outgoing")
         outgoingSocket = GCDAsyncSocket(delegate: self, delegateQueue: queue)
         
         proxySocket.delegate = self
@@ -130,24 +132,24 @@ extension SocksSession: GCDAsyncSocketDelegate {
                 let version = pointer.pointee
                 guard version == 5 else {
                     DDLogWarn("Unsupport socks version: \(version)")
-                    proxySocket.write(Data(bytes: [0x00, 0xff]), withTimeout: -1, tag: 0)
+                    proxySocket.write(Data(bytes: [0x00, 0xff]), withTimeout: writeTimeout, tag: 0)
                     proxySocket.disconnectAfterWriting()
                     return
                 }
                 let methodCnt = pointer.advanced(by: 1).pointee
-                proxySocket.readData(toLength: UInt(methodCnt), withTimeout: -1, tag: ReadTag.readMethods.rawValue)
+                proxySocket.readData(toLength: UInt(methodCnt), withTimeout: readTimeout, tag: ReadTag.readMethods.rawValue)
             })
         case .readMethods:
             let methods = [UInt8](data)
             guard methods[0] == 0 else {
                 DDLogError("Doesn't support auth socks proxy")
-                proxySocket.write(Data(bytes: [0x05, 0xff]), withTimeout: -1, tag: 0)
+                proxySocket.write(Data(bytes: [0x05, 0xff]), withTimeout: writeTimeout, tag: 0)
                 proxySocket.disconnectAfterWriting()
                 return
             }
             
             state = .readConnect
-            proxySocket.write(Data(bytes: [0x05, 0x00]), withTimeout: -1, tag: 0)
+            proxySocket.write(Data(bytes: [0x05, 0x00]), withTimeout: writeTimeout, tag: 0)
             proxySocket.readData(toLength: 4, withTimeout: -1, tag: ReadTag.readConnect.rawValue)
         case .readConnect:
             data.withUnsafeBytes({ (pointer: UnsafePointer<UInt8>)  in
@@ -161,11 +163,11 @@ extension SocksSession: GCDAsyncSocketDelegate {
                 }
                 
                 if addressType == .ipv4 {
-                    proxySocket.readData(toLength: 4, withTimeout: -1, tag: ReadTag.readIpv4.rawValue)
+                    proxySocket.readData(toLength: 4, withTimeout: readTimeout, tag: ReadTag.readIpv4.rawValue)
                 } else if addressType == .ipv6 {
-                    proxySocket.readData(toLength: 16, withTimeout: -1, tag: ReadTag.readIpv6.rawValue)
+                    proxySocket.readData(toLength: 16, withTimeout: readTimeout, tag: ReadTag.readIpv6.rawValue)
                 } else if addressType == .domain {
-                    proxySocket.readData(toLength: 1, withTimeout: -1, tag: ReadTag.readDomainLength.rawValue)
+                    proxySocket.readData(toLength: 1, withTimeout: readTimeout, tag: ReadTag.readDomainLength.rawValue)
                 }
             })
             connectData.append(data)
@@ -178,7 +180,7 @@ extension SocksSession: GCDAsyncSocketDelegate {
             })
             
             destinationHost = String(data: address, encoding: .utf8)!.trimmingCharacters(in: CharacterSet(charactersIn: "\0"))
-            proxySocket.readData(toLength: 2, withTimeout: -1, tag: ReadTag.readPort.rawValue)
+            proxySocket.readData(toLength: 2, withTimeout: readTimeout, tag: ReadTag.readPort.rawValue)
             connectData.append(data)
         case .readIpv6:
             var address = Data(count: Int(INET6_ADDRSTRLEN))
@@ -188,7 +190,7 @@ extension SocksSession: GCDAsyncSocketDelegate {
                 })
             })
             destinationHost = String(data: address, encoding: .utf8)!
-            proxySocket.readData(toLength: 2, withTimeout: -1, tag: ReadTag.readPort.rawValue)
+            proxySocket.readData(toLength: 2, withTimeout: readTimeout, tag: ReadTag.readPort.rawValue)
             connectData.append(data)
         case .readDomainLength:
             data.withUnsafeBytes({ (pointer: UnsafePointer<UInt8>) in
@@ -198,12 +200,12 @@ extension SocksSession: GCDAsyncSocketDelegate {
                     proxySocket.disconnect()
                     return
                 }
-                proxySocket.readData(toLength: UInt(size), withTimeout: -1, tag: ReadTag.readDomain.rawValue)
+                proxySocket.readData(toLength: UInt(size), withTimeout: readTimeout, tag: ReadTag.readDomain.rawValue)
             })
             connectData.append(data)
         case .readDomain:
             destinationHost = String(data: data, encoding: .utf8)!
-            proxySocket.readData(toLength: 2, withTimeout: -1, tag: ReadTag.readPort.rawValue)
+            proxySocket.readData(toLength: 2, withTimeout: readTimeout, tag: ReadTag.readPort.rawValue)
             DDLogInfo("Read domain: \(destinationHost)")
             connectData.append(data)
         case .readPort:
@@ -293,8 +295,6 @@ extension SocksSession: GCDAsyncSocketDelegate {
             if error.code != 7 || error.domain != "GCDAsyncSocketErrorDomain" {
                 if error.code == 3 {
                     DDLogInfo("[http disconnect] Connection timeout")
-                } else {
-                    // DDLogInfo("[http disconnect] \(error.localizedDescription)")
                 }
             }
         }

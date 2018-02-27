@@ -11,8 +11,8 @@ import KingProxy
 import CocoaLumberjackSwift
 
 class ViewController: NSViewController {
-    let server = KingHttpProxy(address: "127.0.0.1", port: 8889)
-    let socksServer = KingSocksProxy(address: "127.0.0.1", port: 2222)
+    let httpServer = KingHttpProxy()
+    let socksServer = KingSocksProxy()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,6 @@ class ViewController: NSViewController {
         DispatchQueue.concurrentPerform(iterations: 3) { (n) in
             print("hello \(n)")
         }
-
     }
 
     override var representedObject: Any? {
@@ -39,14 +38,13 @@ class ViewController: NSViewController {
     @IBAction func btnClicked(_ sender: Any) {
 //        server.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 1086)
 //        server.start()
-        
-        socksServer.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 1086)
-        _ = socksServer.start()
-        
-        let server2 = KingSocksProxy()
-        let port = server2.start()
-        print(port)
+        let file = Bundle(for: KingHttpProxy.self).path(forResource: "Surge", ofType: "conf")
+        ACL.shared?.load(configFile: file!)
+        guard httpServer.start(on: 7777) > 0 else { return }
+        httpServer.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 1086)
 
+//        socksServer.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 1086)
+//        _ = socksServer.start()
     }
     
 }

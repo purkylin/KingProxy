@@ -38,11 +38,12 @@ public class KingHttpProxy: NSObject {
     private var sessions = Set<HttpSession>()
     private var listenSocket: GCDAsyncSocket!
     
+    private var syncQueue = DispatchQueue(label: "com.purkylin.kingproxy.sync.http")
+    
     public override init() {
         super.init()
-        let queue = DispatchQueue(label: "com.purkylin.http")
-        let sockQueue = DispatchQueue(label: "com.purkylin.http.sock", qos: .background, attributes: [.concurrent], autoreleaseFrequency: .inherit, target: nil)
-        listenSocket = GCDAsyncSocket(delegate: self, delegateQueue: queue, socketQueue: sockQueue)
+        let queue = DispatchQueue(label: "com.purkylin.kingproxy.http")
+        listenSocket = GCDAsyncSocket(delegate: self, delegateQueue: queue)
     }
     
     /// Init server with listen host and port
@@ -82,17 +83,21 @@ public class KingHttpProxy: NSObject {
 
 extension KingHttpProxy: GCDAsyncSocketDelegate, HttpSessionDelegate {
     public func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
-        let session = HttpSession(socket: newSocket, proxy: forwardProxy)
-        sessions.insert(session)
-        session.delegate = self
-        DDLogInfo("[http] New session, count:\(sessions.count)")
+        syncQueue.async {
+            let session = HttpSession(socket: newSocket, proxy: self.forwardProxy)
+            self.sessions.insert(session)
+            session.delegate = self
+            DDLogInfo("[http] New session, count:\(self.sessions.count)")
+        }
     }
     
     public func sessionDidDisconnect(session: HttpSession) {
-        if sessions.contains(session) {
-            sessions.remove(session)
+        syncQueue.async {
+            if self.sessions.contains(session) {
+                self.sessions.remove(session)
+            }
+            DDLogInfo("[http] Disconnect session, count:\(self.sessions.count)")
         }
-        DDLogInfo("[http] Disconnect session, count:\(sessions.count)")
     }
 }
 

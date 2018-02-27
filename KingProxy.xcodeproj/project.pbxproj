@@ -12,7 +12,6 @@
 		0DEA38B920201F6F00B93F0A /* Surge.conf in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA38B120201F6F00B93F0A /* Surge.conf */; };
 		0DEA38BA20201F6F00B93F0A /* HttpHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B220201F6F00B93F0A /* HttpHeader.swift */; };
 		0DEA38BB20201F6F00B93F0A /* KingHttpProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B320201F6F00B93F0A /* KingHttpProxy.swift */; };
-		0DEA38BC20201F6F00B93F0A /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B420201F6F00B93F0A /* Packet.swift */; };
 		0DEA38BD20201F6F00B93F0A /* HttpSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B520201F6F00B93F0A /* HttpSession.swift */; };
 		0DEA38C420201FB100B93F0A /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38C020201FB000B93F0A /* CocoaLumberjackSwift.framework */; };
 		0DEA38C520201FB100B93F0A /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA38C120201FB000B93F0A /* MMDB.framework */; };
@@ -39,7 +38,6 @@
 		0DEA39362020695B00B93F0A /* Surge.conf in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA38B120201F6F00B93F0A /* Surge.conf */; };
 		0DEA39372020695B00B93F0A /* HttpHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B220201F6F00B93F0A /* HttpHeader.swift */; };
 		0DEA39382020695B00B93F0A /* KingHttpProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B320201F6F00B93F0A /* KingHttpProxy.swift */; };
-		0DEA39392020695B00B93F0A /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B420201F6F00B93F0A /* Packet.swift */; };
 		0DEA393A2020695B00B93F0A /* HttpSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B520201F6F00B93F0A /* HttpSession.swift */; };
 		0DEA393B2020695B00B93F0A /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38C82020209600B93F0A /* Util.swift */; };
 		0DEA394020206AE800B93F0A /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA393C20206AE700B93F0A /* CocoaLumberjack.framework */; };
@@ -115,7 +113,6 @@
 		0DEA38B120201F6F00B93F0A /* Surge.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Surge.conf; sourceTree = "<group>"; };
 		0DEA38B220201F6F00B93F0A /* HttpHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHeader.swift; sourceTree = "<group>"; };
 		0DEA38B320201F6F00B93F0A /* KingHttpProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KingHttpProxy.swift; sourceTree = "<group>"; };
-		0DEA38B420201F6F00B93F0A /* Packet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
 		0DEA38B520201F6F00B93F0A /* HttpSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpSession.swift; sourceTree = "<group>"; };
 		0DEA38C020201FB000B93F0A /* CocoaLumberjackSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjackSwift.framework; path = Carthage/Build/iOS/CocoaLumberjackSwift.framework; sourceTree = "<group>"; };
 		0DEA38C120201FB000B93F0A /* MMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMDB.framework; path = Carthage/Build/iOS/MMDB.framework; sourceTree = "<group>"; };
@@ -246,7 +243,6 @@
 				0DEA38B220201F6F00B93F0A /* HttpHeader.swift */,
 				0DEA38B320201F6F00B93F0A /* KingHttpProxy.swift */,
 				0DEA396C2022B69300B93F0A /* KingSocksProxy.swift */,
-				0DEA38B420201F6F00B93F0A /* Packet.swift */,
 				0DEA38B520201F6F00B93F0A /* HttpSession.swift */,
 				0DEA396F2022B86400B93F0A /* SocksSession.swift */,
 				0DEA38C82020209600B93F0A /* Util.swift */,
@@ -520,7 +516,6 @@
 				0DEA396D2022B69300B93F0A /* KingSocksProxy.swift in Sources */,
 				0DEA38BB20201F6F00B93F0A /* KingHttpProxy.swift in Sources */,
 				0DEA38B820201F6F00B93F0A /* ACL.swift in Sources */,
-				0DEA38BC20201F6F00B93F0A /* Packet.swift in Sources */,
 				0DEA38BA20201F6F00B93F0A /* HttpHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -544,7 +539,6 @@
 				0DEA396E2022B69300B93F0A /* KingSocksProxy.swift in Sources */,
 				0DEA39382020695B00B93F0A /* KingHttpProxy.swift in Sources */,
 				0DEA39352020695B00B93F0A /* ACL.swift in Sources */,
-				0DEA39392020695B00B93F0A /* Packet.swift in Sources */,
 				0DEA393A2020695B00B93F0A /* HttpSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

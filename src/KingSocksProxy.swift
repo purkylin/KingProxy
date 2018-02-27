@@ -19,13 +19,13 @@ public class KingSocksProxy: NSObject {
     
     private var sessions = Set<SocksSession>()
     private var listenSocket: GCDAsyncSocket!
+    private var syncQueue = DispatchQueue(label: "com.purkylin.kingproxy.sync.socks")
     
     public override init() {
         super.init()
         
         let queue = DispatchQueue(label: "com.purkylin.kingproxy.socks")
-        let socketQueue = DispatchQueue(label: "com.purkylin.kingproxy.socks.socket", qos: .background, attributes: [.concurrent], autoreleaseFrequency: .inherit, target: nil)
-        listenSocket = GCDAsyncSocket(delegate: self, delegateQueue: queue, socketQueue: socketQueue)
+        listenSocket = GCDAsyncSocket(delegate: self, delegateQueue: queue)
     }
     
     /// Init server with listen host and port
@@ -67,17 +67,21 @@ public class KingSocksProxy: NSObject {
 
 extension KingSocksProxy: GCDAsyncSocketDelegate, SocksSessionDelegate {
     public func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
-        let session = SocksSession(socket: newSocket, proxy: forwardProxy)
-        sessions.insert(session)
-        session.delegate = self
-        DDLogInfo("[socks] New session, count:\(sessions.count)")
+        syncQueue.async {
+            let session = SocksSession(socket: newSocket, proxy: self.forwardProxy)
+            self.sessions.insert(session)
+            session.delegate = self
+            DDLogInfo("[socks] New session, count:\(self.sessions.count)")
+        }
     }
     
     func sessionDidDisconnect(session: SocksSession) {
-        if sessions.contains(session) {
-            sessions.remove(session)
+        syncQueue.async {
+            if self.sessions.contains(session) {
+                self.sessions.remove(session)
+            }
+            DDLogInfo("[socks] Disconnect session, count:\(self.sessions.count)")
         }
-        DDLogInfo("[socks] Disconnect session, count:\(sessions.count)")
     }
 }
 
