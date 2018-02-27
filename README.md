@@ -21,7 +21,7 @@ _ = httpProxy.start(on: 8899)
 // socks
 socksProxy = KingSocksProxy()
 socksProxy.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 8899)
-_ port = socksProxy.start() // Select a free port
+_ = socksProxy.start() // Select a free port
 ```
 ## Install
 * Carthage
