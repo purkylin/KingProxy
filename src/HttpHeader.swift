@@ -50,7 +50,7 @@ open class HttpHeader: CustomStringConvertible {
         case invalidHeader, invaldConnection, invalidHost, illegalEncoding
     }
     
-    init(data: Data) throws {
+    public init(data: Data) throws {
         rawData = data
         
         if let raw = String(data: data, encoding: .utf8) {
