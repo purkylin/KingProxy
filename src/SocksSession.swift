@@ -68,6 +68,10 @@ public class SocksSession: NSObject {
         case others
     }
     
+    var time: CFTimeInterval = CFAbsoluteTimeGetCurrent()
+    var requestHost:String = "---"
+    var uuid = NSUUID().uuidString
+    
     private let connectTimeout: TimeInterval = 4
     private let writeTimeout: TimeInterval = 5
     private let readTimeout: TimeInterval = 5
@@ -104,14 +108,15 @@ public class SocksSession: NSObject {
             }
         }
         
-        let queue = DispatchQueue(label: "com.purkylin.kingproxy.sockssession.outgoing")
+        let queue = DispatchQueue.global()
+//        let queue = DispatchQueue(label: "com.purkylin.kingproxy.sockssession.outgoing")
         outgoingSocket = GCDAsyncSocket(delegate: self, delegateQueue: queue)
         
         proxySocket.delegate = self
         outgoingSocket.delegate = self
         
         self.state = .readRequest
-        proxySocket.readData(toLength: 2, withTimeout: -1, tag: ReadTag.readVersion.rawValue)
+        proxySocket.readData(toLength: 2, withTimeout: readTimeout, tag: ReadTag.readVersion.rawValue)
     }
     
     deinit {
@@ -124,7 +129,7 @@ extension SocksSession: GCDAsyncSocketDelegate {
     // MARK: Delegate
     
     public func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-        guard let readTag = ReadTag(rawValue: tag) else { DDLogWarn("Unknowd read tag"); return }
+        guard let readTag = ReadTag(rawValue: tag) else { DDLogWarn("Unknow read tag"); return }
         
         switch readTag {
         case .readVersion:
@@ -215,16 +220,25 @@ extension SocksSession: GCDAsyncSocketDelegate {
             DDLogInfo("Connect remote \(destinationHost):\(destinationPort)")
             connectData.append(data)
             
+            requestHost = "\(destinationHost):\(destinationPort)"
+            
             if ACL.shared!.useProxy(host: destinationHost) { // use rule
                 DDLogInfo("use proxy: \(destinationHost)")
                 state = .readyProxy
-                try! outgoingSocket.connect(toHost: forwardProxy!.host, onPort: forwardProxy!.port)
+                do {
+                    try outgoingSocket.connect(toHost: forwardProxy!.host, onPort: forwardProxy!.port)
+                } catch let e {
+                    DDLogError(e.localizedDescription)
+                }
             } else {
                 DDLogInfo("direct: \(destinationHost)")
                 state = .forward
-                try! outgoingSocket.connect(toHost: destinationHost, onPort: destinationPort)
+                do {
+                    try outgoingSocket.connect(toHost: destinationHost, onPort: destinationPort)
+                } catch let e {
+                    DDLogError(e.localizedDescription)
+                }
             }
-            
         case .readProxyVersion:
             data.withUnsafeBytes({ (pointer: UnsafePointer<UInt8>) in
                 let version = pointer.pointee
@@ -243,7 +257,7 @@ extension SocksSession: GCDAsyncSocketDelegate {
         case .readProxyConnect:
             // TODO Deal with
             state = .forward
-            proxySocket.readData(withTimeout: -1, tag: ReadTag.readIncoming.rawValue)
+            proxySocket.readData(withTimeout: readTimeout, tag: ReadTag.readIncoming.rawValue)
         case .readIncoming:
             self.outgoingSocket.write(data, withTimeout: -1, tag: 0)
             self.outgoingSocket.readData(withTimeout: -1, tag: ReadTag.readOutgoing.rawValue)
@@ -253,6 +267,7 @@ extension SocksSession: GCDAsyncSocketDelegate {
             self.outgoingSocket.readData(withTimeout: -1, tag: ReadTag.readOutgoing.rawValue)
             self.proxySocket.readData(withTimeout: -1, tag: ReadTag.readIncoming.rawValue)
         default:
+            DDLogError("Invalid tag")
             break
         }
     }
@@ -294,18 +309,18 @@ extension SocksSession: GCDAsyncSocketDelegate {
         if let error = err {
             if error.code != 7 || error.domain != "GCDAsyncSocketErrorDomain" {
                 if error.code == 3 {
-                    DDLogInfo("[http disconnect] Connection timeout")
+                    DDLogInfo("[socks disconnect] Connection timeout")
+                } else if error.code == 61 {
+                    DDLogError("[socks] Connection refused")
                 }
             }
         }
         
         if sock === proxySocket {
             outgoingSocket.delegate = nil
+            proxySocket.delegate = nil
             outgoingSocket.disconnect()
-            
-            DispatchQueue.main.async {
-                self.delegate?.sessionDidDisconnect(session: self)
-            }
+            self.delegate?.sessionDidDisconnect(session: self)
         } else {
             proxySocket.disconnectAfterWriting()
         }

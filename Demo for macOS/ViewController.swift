@@ -40,11 +40,11 @@ class ViewController: NSViewController {
 //        server.start()
         let file = Bundle(for: KingHttpProxy.self).path(forResource: "Surge", ofType: "conf")
         ACL.shared?.load(configFile: file!)
-        guard httpServer.start(on: 7777) > 0 else { return }
-        httpServer.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 1086)
+        guard httpServer.start(on: 8898) > 0 else { return }
+        httpServer.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 8899)
 
-//        socksServer.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 1086)
-//        _ = socksServer.start()
+        socksServer.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 1086)
+        _ = socksServer.start(on: 8899)
     }
     
 }

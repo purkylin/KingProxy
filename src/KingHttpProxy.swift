@@ -42,7 +42,7 @@ public class KingHttpProxy: NSObject {
     
     public override init() {
         super.init()
-        let queue = DispatchQueue(label: "com.purkylin.kingproxy.http")
+        let queue = DispatchQueue(label: "com.purkylin.kingproxy.http", qos: .default, attributes: .concurrent)
         listenSocket = GCDAsyncSocket(delegate: self, delegateQueue: queue)
     }
     
@@ -92,11 +92,14 @@ extension KingHttpProxy: GCDAsyncSocketDelegate, HttpSessionDelegate {
     }
     
     public func sessionDidDisconnect(session: HttpSession) {
+        session.delegate = nil
+        
         syncQueue.async {
             if self.sessions.contains(session) {
                 self.sessions.remove(session)
+                let interval = (CFAbsoluteTimeGetCurrent() - session.time) / 1000.0
+                DDLogInfo("[http] Disconnect session count:\(self.sessions.count), live:\(interval) host:")
             }
-            DDLogInfo("[http] Disconnect session, count:\(self.sessions.count)")
         }
     }
 }

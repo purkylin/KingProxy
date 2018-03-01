@@ -24,7 +24,7 @@ public class KingSocksProxy: NSObject {
     public override init() {
         super.init()
         
-        let queue = DispatchQueue(label: "com.purkylin.kingproxy.socks")
+        let queue = DispatchQueue(label: "com.purkylin.kingproxy.socks", qos: .default, attributes: .concurrent)
         listenSocket = GCDAsyncSocket(delegate: self, delegateQueue: queue)
     }
     
@@ -71,16 +71,19 @@ extension KingSocksProxy: GCDAsyncSocketDelegate, SocksSessionDelegate {
             let session = SocksSession(socket: newSocket, proxy: self.forwardProxy)
             self.sessions.insert(session)
             session.delegate = self
-            DDLogInfo("[socks] New session, count:\(self.sessions.count)")
+            DDLogInfo("[socks] New session, uuid:\(session.uuid) count:\(self.sessions.count)")
         }
     }
     
     func sessionDidDisconnect(session: SocksSession) {
+        session.delegate = nil
+        
         syncQueue.async {
             if self.sessions.contains(session) {
                 self.sessions.remove(session)
+                let interval = (CFAbsoluteTimeGetCurrent() - session.time) / 1000.0
+                DDLogInfo("[socks] Disconnect session, uuid:\(session.uuid) count:\(self.sessions.count), live:\(interval) host:\(session.requestHost)")
             }
-            DDLogInfo("[socks] Disconnect session, count:\(self.sessions.count)")
         }
     }
 }
