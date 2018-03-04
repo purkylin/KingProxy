@@ -57,6 +57,8 @@ public class ACL {
     var rules = [Rule]()
     var defaultAction: RuleAction = .proxy
     
+    public var isEmpty: Bool { return rules.count == 0 }
+    
     public init?() {
         guard let db = MMDB() else {
             DDLogError("Init mmdb failed")
@@ -85,7 +87,7 @@ public class ACL {
     }
     
     func useProxy(host: String) -> Bool {
-        if rules.count == 0 {
+        if isEmpty {
             DDLogInfo("[acl] global mode or no rules")
             return true
         }

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D2E50B1204BFC8400BBFBC3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50A9204BFC8300BBFBC3 /* Message.swift */; };
+		0D2E50B2204BFC8400BBFBC3 /* IP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AA204BFC8300BBFBC3 /* IP.swift */; };
+		0D2E50B3204BFC8400BBFBC3 /* Integer+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AB204BFC8300BBFBC3 /* Integer+Data.swift */; };
+		0D2E50B4204BFC8400BBFBC3 /* Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AC204BFC8300BBFBC3 /* Bytes.swift */; };
+		0D2E50B5204BFC8400BBFBC3 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AD204BFC8300BBFBC3 /* Types.swift */; };
+		0D2E50B6204BFC8400BBFBC3 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AE204BFC8300BBFBC3 /* Data+Extensions.swift */; };
+		0D2E50B7204BFC8400BBFBC3 /* DNSResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AF204BFC8300BBFBC3 /* DNSResolver.swift */; };
+		0D2E50B8204BFC8400BBFBC3 /* DNSServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50B0204BFC8400BBFBC3 /* DNSServer.swift */; };
 		0DEA38AA20201F4200B93F0A /* KingProxy_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DEA38A820201F4200B93F0A /* KingProxy_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0DEA38B820201F6F00B93F0A /* ACL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B020201F6F00B93F0A /* ACL.swift */; };
 		0DEA38B920201F6F00B93F0A /* Surge.conf in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA38B120201F6F00B93F0A /* Surge.conf */; };
@@ -106,6 +114,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0D2E50A9204BFC8300BBFBC3 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		0D2E50AA204BFC8300BBFBC3 /* IP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IP.swift; sourceTree = "<group>"; };
+		0D2E50AB204BFC8300BBFBC3 /* Integer+Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Integer+Data.swift"; sourceTree = "<group>"; };
+		0D2E50AC204BFC8300BBFBC3 /* Bytes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bytes.swift; sourceTree = "<group>"; };
+		0D2E50AD204BFC8300BBFBC3 /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		0D2E50AE204BFC8300BBFBC3 /* Data+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
+		0D2E50AF204BFC8300BBFBC3 /* DNSResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNSResolver.swift; sourceTree = "<group>"; };
+		0D2E50B0204BFC8400BBFBC3 /* DNSServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNSServer.swift; sourceTree = "<group>"; };
 		0DEA38A620201F4200B93F0A /* KingProxy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KingProxy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DEA38A820201F4200B93F0A /* KingProxy_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KingProxy_iOS.h; sourceTree = "<group>"; };
 		0DEA38A920201F4200B93F0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -198,6 +214,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D2E50A8204BFC8300BBFBC3 /* DNS */ = {
+			isa = PBXGroup;
+			children = (
+				0D2E50A9204BFC8300BBFBC3 /* Message.swift */,
+				0D2E50AA204BFC8300BBFBC3 /* IP.swift */,
+				0D2E50AB204BFC8300BBFBC3 /* Integer+Data.swift */,
+				0D2E50AC204BFC8300BBFBC3 /* Bytes.swift */,
+				0D2E50AD204BFC8300BBFBC3 /* Types.swift */,
+				0D2E50AE204BFC8300BBFBC3 /* Data+Extensions.swift */,
+			);
+			path = DNS;
+			sourceTree = "<group>";
+		};
 		0DEA388C20201EF100B93F0A = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +267,9 @@
 		0DEA38AE20201F6F00B93F0A /* src */ = {
 			isa = PBXGroup;
 			children = (
+				0D2E50A8204BFC8300BBFBC3 /* DNS */,
+				0D2E50AF204BFC8300BBFBC3 /* DNSResolver.swift */,
+				0D2E50B0204BFC8400BBFBC3 /* DNSServer.swift */,
 				0DEA38B020201F6F00B93F0A /* ACL.swift */,
 				0DEA38B120201F6F00B93F0A /* Surge.conf */,
 				0DEA38B220201F6F00B93F0A /* HttpHeader.swift */,
@@ -547,8 +579,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D2E50B5204BFC8400BBFBC3 /* Types.swift in Sources */,
+				0D2E50B8204BFC8400BBFBC3 /* DNSServer.swift in Sources */,
+				0D2E50B7204BFC8400BBFBC3 /* DNSResolver.swift in Sources */,
+				0D2E50B3204BFC8400BBFBC3 /* Integer+Data.swift in Sources */,
+				0D2E50B6204BFC8400BBFBC3 /* Data+Extensions.swift in Sources */,
+				0D2E50B1204BFC8400BBFBC3 /* Message.swift in Sources */,
+				0D2E50B2204BFC8400BBFBC3 /* IP.swift in Sources */,
 				0DEA394F2021B06D00B93F0A /* ViewController.swift in Sources */,
 				0DEA394D2021B06D00B93F0A /* AppDelegate.swift in Sources */,
+				0D2E50B4204BFC8400BBFBC3 /* Bytes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
