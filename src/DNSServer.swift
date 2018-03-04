@@ -11,11 +11,14 @@ import CocoaAsyncSocket
 import CocoaLumberjackSwift
 
 public final class DNSServer: NSObject {
+    public static var `default` = DNSServer()
+    
     private var listenSocket: GCDAsyncUdpSocket!
-    private var requestMap = [uint16 : Data]() // (id, address)
+    private var requestMap = [UInt16 : Data]() // (id, address)
     public var cache = [String : String]() // (domain ip)
     
     private let server: String = "114.114.114.114"
+    private let foreignServer: String = "8.8.8.8"
 
     public func start(on port: UInt16) {
         let queue = DispatchQueue.global()
@@ -32,6 +35,16 @@ public final class DNSServer: NSObject {
     public func stop() {
         listenSocket.close()
     }
+    
+    // reverse find ip, return domain
+    public func reverse(ip: String) -> String? {
+        for (k, v) in cache {
+            if v == ip {
+                return k
+            }
+        }
+        return nil
+    }
 }
 
 extension DNSServer: GCDAsyncUdpSocketDelegate {
@@ -47,7 +60,8 @@ extension DNSServer: GCDAsyncUdpSocketDelegate {
                     listenSocket.send(payload, toAddress: address, withTimeout: -1, tag: 0)
                 } else {
                     requestMap[response.id] = address
-                    listenSocket.send(data, toHost: server, port: 53, withTimeout: -1, tag: 100)
+                    let requestServer = ACL.shared!.useForeignDNS(domain: domain) ? foreignServer : server
+                    listenSocket.send(data, toHost: requestServer, port: 53, withTimeout: -1, tag: 100)
                 }
             } else { // response
                 if let record = response.answers.first as? HostRecord<IPv4> {

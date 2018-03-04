@@ -14,7 +14,7 @@ import CocoaAsyncSocket
 class ViewController: NSViewController {
     let httpServer = KingHttpProxy()
     let socksServer = KingSocksProxy()
-    let dnsServer = DNSServer()
+    let dnsServer = DNSServer.default
 
     override func viewDidLoad() {
         super.viewDidLoad()

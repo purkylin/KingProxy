@@ -53,9 +53,9 @@ class Rule {
 public class ACL {
     public static var shared = ACL()
     
-    var db: MMDB
+    private var db: MMDB
     var rules = [Rule]()
-    var defaultAction: RuleAction = .proxy
+    private var defaultAction: RuleAction = .proxy
     
     public var isEmpty: Bool { return rules.count == 0 }
     
@@ -86,43 +86,64 @@ public class ACL {
         }
     }
     
-    func useProxy(host: String) -> Bool {
+    public func useProxy(host: String) -> Bool {
         if isEmpty {
             DDLogInfo("[acl] global mode or no rules")
             return true
         }
         
-        // TODO opt
-        let ip = toIP(from: host)
-        DDLogInfo("[acl] host: \(host) \(ip)")
+        var domain: String?
+        var ip: String?
+        
+        if validIP(ip: host) {
+            domain = DNSServer.default.reverse(ip: host)
+            ip = host
+        } else {
+            domain = host
+            ip = DNSServer.default.cache[host]
+            if ip == nil {
+                ip = DNSResolver.shared.resolve(domain: domain!)
+            }
+        }
+        
+        guard ip != nil else { return true}
+        
         for rule in rules {
             switch rule.type {
             case .domain:
-                if rule.value! == host.lowercased() {
-                    DDLogInfo("use rule: \(rule.description)")
-                    return rule.action == .proxy
+                if domain != nil {
+                    if rule.value! == domain!.lowercased() {
+                        DDLogInfo("use rule: \(rule.description)")
+                        return rule.action == .proxy
+                    }
                 }
             case .domainKeyword:
-                if host.lowercased().contains(rule.value!) {
-                    DDLogInfo("use rule: \(rule.description)")
-                    return rule.action == .proxy
+                if domain != nil {
+                    if domain!.lowercased().contains(rule.value!) {
+                        DDLogInfo("use rule: \(rule.description)")
+                        return rule.action == .proxy
+                    }
                 }
             case .domainSuffix:
-                if host.lowercased().hasSuffix(rule.value!) {
-                    DDLogInfo("use rule: \(rule.description)")
-                    return rule.action == .proxy
+                if domain != nil {
+                    if domain!.lowercased().hasSuffix(rule.value!) {
+                        DDLogInfo("use rule: \(rule.description)")
+                        return rule.action == .proxy
+                    }
                 }
             case .ip:
-                if validIP(ip: ip) && match(ip: ip, ipSegment: rule.value!) {
+                if ip != nil && match(ip: ip!, ipSegment: rule.value!) {
                     DDLogInfo("use rule: \(rule.description)")
                     return rule.action == .proxy
                 }
             case .geoip:
-                if let country = db.lookup(ip) {
-                    if country.isoCode.lowercased() == rule.value! {
-                        DDLogInfo("country \(country.isoCode), \(rule.value ?? "")")
-                        DDLogInfo("use rule: \(rule.description)")
-                        return rule.action == .proxy
+                if ip != nil {
+                    if let country = db.lookup(ip!) {
+                        if country.isoCode.lowercased() == rule.value! {
+                            DDLogInfo("country \(country.isoCode), \(rule.value ?? "")")
+                            DDLogInfo("use rule: \(rule.description)")
+                            return rule.action == .proxy
+                        }
                     }
                 }
             default:
@@ -134,6 +155,30 @@ public class ACL {
         return defaultAction == .proxy
     }
     
+    public func useForeignDNS(domain: String) -> Bool {
+        for rule in rules {
+            switch rule.type {
+            case .domain:
+                if rule.value! == domain.lowercased() {
+                    return rule.action == .proxy
+                }
+            case .domainKeyword:
+                if domain.lowercased().contains(rule.value!) {
+                    return rule.action == .proxy
+                }
+            case .domainSuffix:
+                if domain.lowercased().hasSuffix(rule.value!) {
+                    return rule.action == .proxy
+                }
+            default:
+                break
+            }
+        }
+        
+        return false
+    }
+    
+    /// 废弃
     func toIP(from domain: String) -> String {
         let host = CFHostCreateWithName(nil,domain as CFString).takeRetainedValue()
         CFHostStartInfoResolution(host, .addresses, nil)
@@ -153,13 +198,13 @@ public class ACL {
         return ""
     }
     
-    func validIP(ip: String) -> Bool {
+    private func validIP(ip: String) -> Bool {
         let regex = try! NSRegularExpression(pattern: "\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3}", options: [])
         let range = NSRange(location: 0, length: ip.count)
         return regex.matches(in: ip, options: [], range: range).count > 0
     }
     
-    func match(ip: String, ipSegment: String) -> Bool {
+    private func match(ip: String, ipSegment: String) -> Bool {
         let arr = ipSegment.components(separatedBy: "/")
         guard arr.count == 2 else { return false }
         
@@ -169,7 +214,7 @@ public class ACL {
         return (dstIP & (0xff << mask)) == sourceIP
     }
     
-    func toNumber(ipv4: String) -> UInt32 {
+    private func toNumber(ipv4: String) -> UInt32 {
         let arr = ipv4.components(separatedBy: ".").map { UInt32($0)! }
         var result: UInt32 = 0
         result += arr[0] << 24
@@ -179,7 +224,7 @@ public class ACL {
         return result
     }
     
-    func parseConfig(raw: String) -> [Rule] {
+    private func parseConfig(raw: String) -> [Rule] {
         let lines = raw.components(separatedBy: CharacterSet(charactersIn: "\n")).map {
             $0.trimmingCharacters(in: CharacterSet(charactersIn: " \r\t"))
         }

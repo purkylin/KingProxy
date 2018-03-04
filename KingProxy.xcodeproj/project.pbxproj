@@ -7,14 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D2E50B1204BFC8400BBFBC3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50A9204BFC8300BBFBC3 /* Message.swift */; };
-		0D2E50B2204BFC8400BBFBC3 /* IP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AA204BFC8300BBFBC3 /* IP.swift */; };
-		0D2E50B3204BFC8400BBFBC3 /* Integer+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AB204BFC8300BBFBC3 /* Integer+Data.swift */; };
-		0D2E50B4204BFC8400BBFBC3 /* Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AC204BFC8300BBFBC3 /* Bytes.swift */; };
-		0D2E50B5204BFC8400BBFBC3 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AD204BFC8300BBFBC3 /* Types.swift */; };
-		0D2E50B6204BFC8400BBFBC3 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AE204BFC8300BBFBC3 /* Data+Extensions.swift */; };
-		0D2E50B7204BFC8400BBFBC3 /* DNSResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AF204BFC8300BBFBC3 /* DNSResolver.swift */; };
-		0D2E50B8204BFC8400BBFBC3 /* DNSServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50B0204BFC8400BBFBC3 /* DNSServer.swift */; };
+		0D2E50BA204C35AC00BBFBC3 /* DNSResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AF204BFC8300BBFBC3 /* DNSResolver.swift */; };
+		0D2E50BB204C35AC00BBFBC3 /* DNSServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50B0204BFC8400BBFBC3 /* DNSServer.swift */; };
+		0D2E50BC204C35AC00BBFBC3 /* DNSResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AF204BFC8300BBFBC3 /* DNSResolver.swift */; };
+		0D2E50BD204C35AC00BBFBC3 /* DNSServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50B0204BFC8400BBFBC3 /* DNSServer.swift */; };
+		0D2E50BE204C35BF00BBFBC3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50A9204BFC8300BBFBC3 /* Message.swift */; };
+		0D2E50BF204C35BF00BBFBC3 /* IP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AA204BFC8300BBFBC3 /* IP.swift */; };
+		0D2E50C0204C35BF00BBFBC3 /* Integer+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AB204BFC8300BBFBC3 /* Integer+Data.swift */; };
+		0D2E50C1204C35BF00BBFBC3 /* Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AC204BFC8300BBFBC3 /* Bytes.swift */; };
+		0D2E50C2204C35BF00BBFBC3 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AD204BFC8300BBFBC3 /* Types.swift */; };
+		0D2E50C3204C35BF00BBFBC3 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AE204BFC8300BBFBC3 /* Data+Extensions.swift */; };
+		0D2E50C4204C35C000BBFBC3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50A9204BFC8300BBFBC3 /* Message.swift */; };
+		0D2E50C5204C35C000BBFBC3 /* IP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AA204BFC8300BBFBC3 /* IP.swift */; };
+		0D2E50C6204C35C000BBFBC3 /* Integer+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AB204BFC8300BBFBC3 /* Integer+Data.swift */; };
+		0D2E50C7204C35C000BBFBC3 /* Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AC204BFC8300BBFBC3 /* Bytes.swift */; };
+		0D2E50C8204C35C000BBFBC3 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AD204BFC8300BBFBC3 /* Types.swift */; };
+		0D2E50C9204C35C000BBFBC3 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AE204BFC8300BBFBC3 /* Data+Extensions.swift */; };
 		0DEA38AA20201F4200B93F0A /* KingProxy_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DEA38A820201F4200B93F0A /* KingProxy_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0DEA38B820201F6F00B93F0A /* ACL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B020201F6F00B93F0A /* ACL.swift */; };
 		0DEA38B920201F6F00B93F0A /* Surge.conf in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA38B120201F6F00B93F0A /* Surge.conf */; };
@@ -545,9 +553,17 @@
 				0DEA38BD20201F6F00B93F0A /* HttpSession.swift in Sources */,
 				0DEA39702022B86400B93F0A /* SocksSession.swift in Sources */,
 				0DEA38C92020209700B93F0A /* Util.swift in Sources */,
+				0D2E50C8204C35C000BBFBC3 /* Types.swift in Sources */,
+				0D2E50C5204C35C000BBFBC3 /* IP.swift in Sources */,
+				0D2E50C6204C35C000BBFBC3 /* Integer+Data.swift in Sources */,
+				0D2E50BC204C35AC00BBFBC3 /* DNSResolver.swift in Sources */,
+				0D2E50BD204C35AC00BBFBC3 /* DNSServer.swift in Sources */,
 				0DEA396D2022B69300B93F0A /* KingSocksProxy.swift in Sources */,
+				0D2E50C9204C35C000BBFBC3 /* Data+Extensions.swift in Sources */,
 				0DEA38BB20201F6F00B93F0A /* KingHttpProxy.swift in Sources */,
+				0D2E50C4204C35C000BBFBC3 /* Message.swift in Sources */,
 				0DEA38B820201F6F00B93F0A /* ACL.swift in Sources */,
+				0D2E50C7204C35C000BBFBC3 /* Bytes.swift in Sources */,
 				0DEA38BA20201F6F00B93F0A /* HttpHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -568,9 +584,17 @@
 				0DEA39372020695B00B93F0A /* HttpHeader.swift in Sources */,
 				0DEA39712022B86400B93F0A /* SocksSession.swift in Sources */,
 				0DEA393B2020695B00B93F0A /* Util.swift in Sources */,
+				0D2E50C2204C35BF00BBFBC3 /* Types.swift in Sources */,
+				0D2E50BF204C35BF00BBFBC3 /* IP.swift in Sources */,
+				0D2E50C0204C35BF00BBFBC3 /* Integer+Data.swift in Sources */,
+				0D2E50BA204C35AC00BBFBC3 /* DNSResolver.swift in Sources */,
+				0D2E50BB204C35AC00BBFBC3 /* DNSServer.swift in Sources */,
 				0DEA396E2022B69300B93F0A /* KingSocksProxy.swift in Sources */,
+				0D2E50C3204C35BF00BBFBC3 /* Data+Extensions.swift in Sources */,
 				0DEA39382020695B00B93F0A /* KingHttpProxy.swift in Sources */,
+				0D2E50BE204C35BF00BBFBC3 /* Message.swift in Sources */,
 				0DEA39352020695B00B93F0A /* ACL.swift in Sources */,
+				0D2E50C1204C35BF00BBFBC3 /* Bytes.swift in Sources */,
 				0DEA393A2020695B00B93F0A /* HttpSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -579,16 +603,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D2E50B5204BFC8400BBFBC3 /* Types.swift in Sources */,
-				0D2E50B8204BFC8400BBFBC3 /* DNSServer.swift in Sources */,
-				0D2E50B7204BFC8400BBFBC3 /* DNSResolver.swift in Sources */,
-				0D2E50B3204BFC8400BBFBC3 /* Integer+Data.swift in Sources */,
-				0D2E50B6204BFC8400BBFBC3 /* Data+Extensions.swift in Sources */,
-				0D2E50B1204BFC8400BBFBC3 /* Message.swift in Sources */,
-				0D2E50B2204BFC8400BBFBC3 /* IP.swift in Sources */,
 				0DEA394F2021B06D00B93F0A /* ViewController.swift in Sources */,
 				0DEA394D2021B06D00B93F0A /* AppDelegate.swift in Sources */,
-				0D2E50B4204BFC8400BBFBC3 /* Bytes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
