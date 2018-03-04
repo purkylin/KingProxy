@@ -102,9 +102,14 @@ public class ACL {
             domain = host
             ip = DNSServer.default.cache[host]
             if ip == nil {
+                DDLogInfo("resolve")
                 ip = DNSResolver.shared.resolve(domain: domain!)
             }
         }
+        
+        let d_name = domain ?? "unknown domain"
+        let d_ip = ip ?? "unknown ip"
+        DDLogInfo("domain: \(d_name), ip: \(d_ip)")
         
         guard ip != nil else { return true}
         

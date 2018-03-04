@@ -58,6 +58,7 @@ extension DNSServer: GCDAsyncUdpSocketDelegate {
                     let message = Message(id: response.id, type: .response, operationCode: .query, authoritativeAnswer: true, truncation: false, recursionDesired: response.recursionDesired, recursionAvailable: true, returnCode: .noError, questions: response.questions, answers: [answer], authorities: [], additional: [])
                     let payload = try message.serialize()
                     listenSocket.send(payload, toAddress: address, withTimeout: -1, tag: 0)
+                    DDLogInfo("dns: \(domain)")
                 } else {
                     requestMap[response.id] = address
                     let requestServer = ACL.shared!.useForeignDNS(domain: domain) ? foreignServer : server
