@@ -126,7 +126,9 @@ func realIP(from message: Message) -> String? {
     // TODO: Other type
     for answer in message.answers {
         if type(of: answer) == HostRecord<IPv4>.self {
-            return (answer as! HostRecord<IPv4>).ip.presentation
+            if recordName == "" || recordName == answer.name {
+                return (answer as! HostRecord<IPv4>).ip.presentation
+            }
         } else if type(of: answer) == AliasRecord.self {
             recordName = (answer as! AliasRecord).canonicalName
         }
