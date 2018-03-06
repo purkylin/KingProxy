@@ -23,3 +23,13 @@ extension Data {
         }
     }
 }
+
+func validIP(ip: String) -> Bool {
+    let regex = try! NSRegularExpression(pattern: "\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3}", options: [])
+    let range = NSRange(location: 0, length: ip.count)
+    return regex.matches(in: ip, options: [], range: range).count > 0
+}
+
+func isFakeIP(ip: String) -> Bool {
+    return ip == "240.0.0.34"
+}

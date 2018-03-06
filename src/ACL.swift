@@ -52,6 +52,7 @@ class Rule {
 
 public class ACL {
     public static var shared = ACL()
+    public let useDNS = true // whether use module dns
     
     private var db: MMDB
     var rules = [Rule]()
@@ -86,69 +87,40 @@ public class ACL {
         }
     }
     
-    public func useProxy(host: String) -> Bool {
-        if isEmpty {
-            DDLogInfo("[acl] global mode or no rules")
-            return true
+    private func useProxyWithoutDNS(host: String) -> Bool {
+        var ip = ""
+        if !validIP(ip: host) {
+            ip = toIP(from: host)
         }
-        
-        var domain: String?
-        var ip: String?
-        
-        if validIP(ip: host) {
-            domain = DNSServer.default.reverse(ip: host)
-            ip = host
-        } else {
-            domain = host
-            ip = DNSServer.default.cache[host]
-            if ip == nil {
-                DDLogInfo("resolve")
-                ip = DNSResolver.shared.resolve(domain: domain!)
-            }
-        }
-        
-        let d_name = domain ?? "unknown domain"
-        let d_ip = ip ?? "unknown ip"
-        DDLogInfo("domain: \(d_name), ip: \(d_ip)")
-        
-        guard ip != nil else { return true}
         
         for rule in rules {
             switch rule.type {
             case .domain:
-                if domain != nil {
-                    if rule.value! == domain!.lowercased() {
-                        DDLogInfo("use rule: \(rule.description)")
-                        return rule.action == .proxy
-                    }
+                if rule.value! == host.lowercased() {
+                    DDLogInfo("use rule: \(rule.description)")
+                    return rule.action == .proxy
                 }
             case .domainKeyword:
-                if domain != nil {
-                    if domain!.lowercased().contains(rule.value!) {
-                        DDLogInfo("use rule: \(rule.description)")
-                        return rule.action == .proxy
-                    }
+                if host.lowercased().contains(rule.value!) {
+                    DDLogInfo("use rule: \(rule.description)")
+                    return rule.action == .proxy
                 }
             case .domainSuffix:
-                if domain != nil {
-                    if domain!.lowercased().hasSuffix(rule.value!) {
-                        DDLogInfo("use rule: \(rule.description)")
-                        return rule.action == .proxy
-                    }
+                if host.lowercased().hasSuffix(rule.value!) {
+                    DDLogInfo("use rule: \(rule.description)")
+                    return rule.action == .proxy
                 }
             case .ip:
-                if ip != nil && match(ip: ip!, ipSegment: rule.value!) {
+                if match(ip: ip, ipSegment: rule.value!) {
                     DDLogInfo("use rule: \(rule.description)")
                     return rule.action == .proxy
                 }
             case .geoip:
-                if ip != nil {
-                    if let country = db.lookup(ip!) {
-                        if country.isoCode.lowercased() == rule.value! {
-                            DDLogInfo("country \(country.isoCode), \(rule.value ?? "")")
-                            DDLogInfo("use rule: \(rule.description)")
-                            return rule.action == .proxy
-                        }
+                if let country = db.lookup(ip) {
+                    if country.isoCode.lowercased() == rule.value! {
+                        DDLogInfo("country \(country.isoCode), \(rule.value ?? "")")
+                        DDLogInfo("use rule: \(rule.description)")
+                        return rule.action == .proxy
                     }
                 }
             default:
@@ -160,19 +132,62 @@ public class ACL {
         return defaultAction == .proxy
     }
     
-    public func useForeignDNS(domain: String) -> Bool {
+    public func useProxy(host: String) -> Bool {
+        if isEmpty {
+            DDLogInfo("[acl] global mode or no rules")
+            return true // default rule
+        }
+        
+        if !useDNS { // without dns module
+            return useProxyWithoutDNS(host:host)
+        }
+        
+        if validIP(ip: host) {
+            if isFakeIP(ip: host) {
+                return true
+            }
+            
+            if DNSServer.default.reverse(ip: host) == nil {
+                // apply ip rule
+                for rule in rules {
+                    switch rule.type {
+                    case .ip:
+                        if match(ip: host, ipSegment: rule.value!) {
+                            DDLogInfo("use rule: \(rule.description)")
+                            return rule.action == .proxy
+                        }
+                    case .geoip:
+                        if let country = db.lookup(host) {
+                            if country.isoCode.lowercased() == rule.value! {
+                                DDLogInfo("country \(country.isoCode), \(rule.value ?? "")")
+                                DDLogInfo("use rule: \(rule.description)")
+                                return rule.action == .proxy
+                            }
+                        }
+                    default:
+                        break
+                    }
+                }
+                return defaultAction == .proxy
+            }
+        }
+        
+        // apply domain rule
         for rule in rules {
             switch rule.type {
             case .domain:
-                if rule.value! == domain.lowercased() {
+                if rule.value! == host.lowercased() {
+                    DDLogInfo("use rule: \(rule.description)")
                     return rule.action == .proxy
                 }
             case .domainKeyword:
-                if domain.lowercased().contains(rule.value!) {
+                if host.lowercased().contains(rule.value!) {
+                    DDLogInfo("use rule: \(rule.description)")
                     return rule.action == .proxy
                 }
             case .domainSuffix:
-                if domain.lowercased().hasSuffix(rule.value!) {
+                if host.lowercased().hasSuffix(rule.value!) {
+                    DDLogInfo("use rule: \(rule.description)")
                     return rule.action == .proxy
                 }
             default:
@@ -180,7 +195,7 @@ public class ACL {
             }
         }
         
-        return false
+        return defaultAction == .proxy
     }
     
     /// 废弃

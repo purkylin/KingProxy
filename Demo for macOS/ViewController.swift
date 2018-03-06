@@ -53,9 +53,12 @@ class ViewController: NSViewController {
 //            }
 //        }
         
-        if let myip = DNSResolver.shared.resolve(domain: "sina.com") {
-            print(myip)
-        }
+        
+        
+        
+//        if let myip = DNSResolver.shared.resolve(domain: "googleads.g.doubleclick.net") {
+//            print(myip)
+//        }
     }
 }
 
