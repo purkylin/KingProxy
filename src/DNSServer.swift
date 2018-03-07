@@ -85,7 +85,7 @@ extension DNSServer: GCDAsyncUdpSocketDelegate {
                 
                 if self.cache[domain] != nil {
                     result = self.cache[domain]
-                } else if !isChinaDomain(domain: domain) && isInWhiteList(domain: domain) {
+                } else if !isChinaDomain(domain: domain) && isInWhiteList(domain: domain) && !domain.contains("apple.com") {
                     result = fakeIP
                 }
 
