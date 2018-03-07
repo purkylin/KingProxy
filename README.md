@@ -9,6 +9,7 @@
 * Forward http to socks5 proxy
 * Forward socks to another sub socks proxy
 * Partial support surge rule
+* DNS server
 ## Requirement
 * Swift4
 * Xcode9
@@ -26,11 +27,14 @@ _ = httpProxy.start(on: 8899)
 socksProxy = KingSocksProxy()
 socksProxy.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 8899)
 _ = socksProxy.start() // Select a free port
+
+// dns
+dnsServer = DNSServer()
+dnsServer.start(on: 53)
 ```
 ## Install
 * Carthage
 `github "purkylin/KingProxy" "master"`
 ## TODO
 * Stable api
-* Implementent KingDNSProxy composent
 
