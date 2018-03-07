@@ -1,10 +1,15 @@
 # KingProxy
-A proxy can forward http to socks and socks to socks base rule
+
+ [![Join the chat at https://telegram.me/NEKitGroup](https://img.shields.io/badge/chat-on%20Telegram-blue.svg)](https://telegram.me/KingProxyTalk)
+ [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) 
+ [![GitHub license](https://img.shields.io/badge/license-BSD_3--Clause-blue.svg)](LICENSE.md)
+ 
 ## Feature
 * Http(s) proxy
 * Forward http to socks5 proxy
 * Forward socks to another sub socks proxy
 * Partial support surge rule
+* DNS server
 ## Requirement
 * Swift4
 * Xcode9
@@ -22,11 +27,14 @@ _ = httpProxy.start(on: 8899)
 socksProxy = KingSocksProxy()
 socksProxy.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 8899)
 _ = socksProxy.start() // Select a free port
+
+// dns
+dnsServer = DNSServer()
+dnsServer.start(on: 53)
 ```
 ## Install
 * Carthage
 `github "purkylin/KingProxy" "master"`
 ## TODO
 * Stable api
-* Implementent KingDNSProxy composent
 
