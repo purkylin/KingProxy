@@ -25,6 +25,8 @@
 		0D2E50C9204C35C000BBFBC3 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2E50AE204BFC8300BBFBC3 /* Data+Extensions.swift */; };
 		0DBFFFCD204E94290003A430 /* gfwlist.data in Resources */ = {isa = PBXBuildFile; fileRef = 0DBFFFCC204E94290003A430 /* gfwlist.data */; };
 		0DBFFFCE204E94290003A430 /* gfwlist.data in Resources */ = {isa = PBXBuildFile; fileRef = 0DBFFFCC204E94290003A430 /* gfwlist.data */; };
+		0DBFFFDC204FACB50003A430 /* KingProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBFFFDB204FACB50003A430 /* KingProxyTests.swift */; };
+		0DBFFFDE204FACB50003A430 /* KingProxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA392D202068DD00B93F0A /* KingProxy.framework */; };
 		0DEA38AA20201F4200B93F0A /* KingProxy_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DEA38A820201F4200B93F0A /* KingProxy_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0DEA38B820201F6F00B93F0A /* ACL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B020201F6F00B93F0A /* ACL.swift */; };
 		0DEA38B920201F6F00B93F0A /* Surge.conf in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA38B120201F6F00B93F0A /* Surge.conf */; };
@@ -82,6 +84,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0DBFFFDF204FACB50003A430 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DEA388D20201EF100B93F0A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0DEA392C202068DD00B93F0A;
+			remoteInfo = "KingProxy-macOS";
+		};
 		0DEA391C20203AB700B93F0A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0DEA388D20201EF100B93F0A /* Project object */;
@@ -133,6 +142,9 @@
 		0D2E50AF204BFC8300BBFBC3 /* DNSResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNSResolver.swift; sourceTree = "<group>"; };
 		0D2E50B0204BFC8400BBFBC3 /* DNSServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNSServer.swift; sourceTree = "<group>"; };
 		0DBFFFCC204E94290003A430 /* gfwlist.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gfwlist.data; sourceTree = "<group>"; };
+		0DBFFFD9204FACB40003A430 /* KingProxyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KingProxyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DBFFFDB204FACB50003A430 /* KingProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingProxyTests.swift; sourceTree = "<group>"; };
+		0DBFFFDD204FACB50003A430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0DEA38A620201F4200B93F0A /* KingProxy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KingProxy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DEA38A820201F4200B93F0A /* KingProxy_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KingProxy_iOS.h; sourceTree = "<group>"; };
 		0DEA38A920201F4200B93F0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -176,6 +188,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0DBFFFD6204FACB40003A430 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DBFFFDE204FACB50003A430 /* KingProxy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0DEA38A220201F4200B93F0A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -238,6 +258,15 @@
 			path = DNS;
 			sourceTree = "<group>";
 		};
+		0DBFFFDA204FACB50003A430 /* KingProxyTests */ = {
+			isa = PBXGroup;
+			children = (
+				0DBFFFDB204FACB50003A430 /* KingProxyTests.swift */,
+				0DBFFFDD204FACB50003A430 /* Info.plist */,
+			);
+			path = KingProxyTests;
+			sourceTree = "<group>";
+		};
 		0DEA388C20201EF100B93F0A = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +279,7 @@
 				0DEA392E202068DD00B93F0A /* KingProxy-macOS */,
 				0DEA39082020218E00B93F0A /* Demo */,
 				0DEA394B2021B06D00B93F0A /* Demo for macOS */,
+				0DBFFFDA204FACB50003A430 /* KingProxyTests */,
 				0DEA389720201EF100B93F0A /* Products */,
 				0DEA38BF20201FB000B93F0A /* Frameworks */,
 			);
@@ -262,6 +292,7 @@
 				0DEA39072020218E00B93F0A /* Demo.app */,
 				0DEA392D202068DD00B93F0A /* KingProxy.framework */,
 				0DEA394A2021B06D00B93F0A /* Demo for macOS.app */,
+				0DBFFFD9204FACB40003A430 /* KingProxyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -366,6 +397,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		0DBFFFD8204FACB40003A430 /* KingProxyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0DBFFFE3204FACB50003A430 /* Build configuration list for PBXNativeTarget "KingProxyTests" */;
+			buildPhases = (
+				0DBFFFD5204FACB40003A430 /* Sources */,
+				0DBFFFD6204FACB40003A430 /* Frameworks */,
+				0DBFFFD7204FACB40003A430 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0DBFFFE0204FACB50003A430 /* PBXTargetDependency */,
+			);
+			name = KingProxyTests;
+			productName = KingProxyTests;
+			productReference = 0DBFFFD9204FACB40003A430 /* KingProxyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		0DEA38A520201F4200B93F0A /* KingProxy-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0DEA38AB20201F4200B93F0A /* Build configuration list for PBXNativeTarget "KingProxy-iOS" */;
@@ -450,6 +499,10 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Purkylin King";
 				TargetAttributes = {
+					0DBFFFD8204FACB40003A430 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					0DEA38A520201F4200B93F0A = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -490,11 +543,19 @@
 				0DEA392C202068DD00B93F0A /* KingProxy-macOS */,
 				0DEA39062020218E00B93F0A /* Demo */,
 				0DEA39492021B06D00B93F0A /* Demo for macOS */,
+				0DBFFFD8204FACB40003A430 /* KingProxyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0DBFFFD7204FACB40003A430 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0DEA38A420201F4200B93F0A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -552,6 +613,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0DBFFFD5204FACB40003A430 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DBFFFDC204FACB50003A430 /* KingProxyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0DEA38A120201F4200B93F0A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -617,6 +686,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0DBFFFE0204FACB50003A430 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0DEA392C202068DD00B93F0A /* KingProxy-macOS */;
+			targetProxy = 0DBFFFDF204FACB50003A430 /* PBXContainerItemProxy */;
+		};
 		0DEA391D20203AB700B93F0A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0DEA38A520201F4200B93F0A /* KingProxy-iOS */;
@@ -652,6 +726,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0DBFFFE1204FACB50003A430 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = QJSM3KYT6N;
+				INFOPLIST_FILE = KingProxyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.purkylin.KingProxyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		0DBFFFE2204FACB50003A430 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = QJSM3KYT6N;
+				INFOPLIST_FILE = KingProxyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.purkylin.KingProxyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 		0DEA389C20201EF100B93F0A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -966,6 +1074,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0DBFFFE3204FACB50003A430 /* Build configuration list for PBXNativeTarget "KingProxyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0DBFFFE1204FACB50003A430 /* Debug */,
+				0DBFFFE2204FACB50003A430 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0DEA389020201EF100B93F0A /* Build configuration list for PBXProject "KingProxy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

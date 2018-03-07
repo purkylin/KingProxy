@@ -31,5 +31,5 @@ func validIP(ip: String) -> Bool {
 }
 
 func isFakeIP(ip: String) -> Bool {
-    return ip == "240.0.0.34"
+    return ip == "240.0.0.34" || ip.count == 0
 }

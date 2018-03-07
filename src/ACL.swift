@@ -142,53 +142,49 @@ public class ACL {
             return useProxyWithoutDNS(host:host)
         }
         
-        if validIP(ip: host) {
-            if isFakeIP(ip: host) {
+        var ip = ""
+        var domain = ""
+        
+        if !validIP(ip: host) {
+            ip = toIP(from: host)
+            if isFakeIP(ip: ip) {
+                DDLogInfo("[acl] fake ip: host")
                 return true
             }
-            
-            if DNSServer.default.reverse(ip: host) == nil {
-                // apply ip rule
-                for rule in rules {
-                    switch rule.type {
-                    case .ip:
-                        if match(ip: host, ipSegment: rule.value!) {
-                            DDLogInfo("use rule: \(rule.description)")
-                            return rule.action == .proxy
-                        }
-                    case .geoip:
-                        if let country = db.lookup(host) {
-                            if country.isoCode.lowercased() == rule.value! {
-                                DDLogInfo("country \(country.isoCode), \(rule.value ?? "")")
-                                DDLogInfo("use rule: \(rule.description)")
-                                return rule.action == .proxy
-                            }
-                        }
-                    default:
-                        break
-                    }
-                }
-                return defaultAction == .proxy
-            }
+        } else {
+            domain = DNSServer.default.reverse(ip: ip) ?? ""
         }
         
         // apply domain rule
         for rule in rules {
             switch rule.type {
             case .domain:
-                if rule.value! == host.lowercased() {
+                if rule.value! == domain.lowercased() {
                     DDLogInfo("use rule: \(rule.description)")
                     return rule.action == .proxy
                 }
             case .domainKeyword:
-                if host.lowercased().contains(rule.value!) {
+                if domain.lowercased().contains(rule.value!) {
                     DDLogInfo("use rule: \(rule.description)")
                     return rule.action == .proxy
                 }
             case .domainSuffix:
-                if host.lowercased().hasSuffix(rule.value!) {
+                if domain.lowercased().hasSuffix(rule.value!) {
                     DDLogInfo("use rule: \(rule.description)")
                     return rule.action == .proxy
+                }
+            case .ip:
+                if match(ip: ip, ipSegment: rule.value!) {
+                    DDLogInfo("use rule: \(rule.description)")
+                    return rule.action == .proxy
+                }
+            case .geoip:
+                if let country = db.lookup(ip) {
+                    if country.isoCode.lowercased() == rule.value! {
+                        DDLogInfo("country \(country.isoCode), \(rule.value ?? "")")
+                        DDLogInfo("use rule: \(rule.description)")
+                        return rule.action == .proxy
+                    }
                 }
             default:
                 break
@@ -200,6 +196,10 @@ public class ACL {
     
     /// 废弃
     func toIP(from domain: String) -> String {
+        if validIP(ip: domain) {
+            return domain
+        }
+        
         let host = CFHostCreateWithName(nil,domain as CFString).takeRetainedValue()
         CFHostStartInfoResolution(host, .addresses, nil)
         var success: DarwinBoolean = false
@@ -225,6 +225,10 @@ public class ACL {
     }
     
     private func match(ip: String, ipSegment: String) -> Bool {
+        if ip.count == 0 {
+            return false
+        }
+        
         let arr = ipSegment.components(separatedBy: "/")
         guard arr.count == 2 else { return false }
         
@@ -235,12 +239,15 @@ public class ACL {
     }
     
     private func toNumber(ipv4: String) -> UInt32 {
-        let arr = ipv4.components(separatedBy: ".").map { UInt32($0)! }
+        let arr = ipv4.components(separatedBy: ".")
+        guard arr.count == 4 else { return 0 }
+        let items = arr.map { UInt32($0) ?? 0 }
+        
         var result: UInt32 = 0
-        result += arr[0] << 24
-        result += arr[0] << 16
-        result += arr[0] << 8
-        result += arr[0] << 0
+        result += items[0] << 24
+        result += items[1] << 16
+        result += items[2] << 8
+        result += items[3] << 0
         return result
     }
     

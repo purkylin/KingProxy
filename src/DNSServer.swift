@@ -65,7 +65,7 @@ public final class DNSServer: NSObject {
     }
     
     func isInWhiteList(domain: String) -> Bool {
-        return whiteList.contains(where: { domain.hasSuffix($0) || $0.hasSuffix(domain)})
+        return whiteList.contains(where: { domain.hasSuffix($0) || $0 == ".\(domain)"})
     }
     
     func isChinaDomain(domain: String) -> Bool {
