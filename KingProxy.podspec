@@ -11,7 +11,7 @@ s.source = { :git => "https://github.com/purkylin/KingProxy", :tag => "#{s.versi
 s.ios.deployment_target  = '9.0'
 s.osx.deployment_target  = '10.10'
 s.source_files = 'src/**/*.{swift,h,c,m}'
-s.resources = "src/Surge.conf"
+s.resources = ["src/Surge.conf", "src/gfwlist.data"]
 s.dependency 'CocoaLumberjack/Swift'
 s.dependency 'CocoaAsyncSocket'
 s.dependency 'MMDB-Swift'
