@@ -1,5 +1,9 @@
 # KingProxy
-A proxy can forward http to socks and socks to socks base rule
+
+ [![Join the chat at https://telegram.me/NEKitGroup](https://img.shields.io/badge/chat-on%20Telegram-blue.svg)](https://telegram.me/KingProxyTalk)
+ [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) 
+ [![GitHub license](https://img.shields.io/badge/license-BSD_3--Clause-blue.svg)](LICENSE.md)
+ 
 ## Feature
 * Http(s) proxy
 * Forward http to socks5 proxy
