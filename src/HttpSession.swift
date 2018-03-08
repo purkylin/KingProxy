@@ -47,7 +47,7 @@ public class HttpSession: NSObject {
     
     private var status: Status = .initial
     private var isSecure = false
-    private var useProxy = false
+    private var hasProxy = false
     
     private var receviedData: Data?
     private var header: HttpHeader!
@@ -65,9 +65,9 @@ public class HttpSession: NSObject {
         if let proxy = forwardProxy {
             switch proxy.type {
             case .http:
-                DDLogError("Not support forward to http proxy")
+                hasProxy = true
             case .socks5:
-                useProxy = true
+                hasProxy = true
             case .shadowsocks:
                 DDLogError("Not support forward to shadowsocks proxy")
                 break
@@ -115,7 +115,7 @@ extension HttpSession: GCDAsyncSocketDelegate {
                         DDLogError("[http] Connect to host failed: \(e.localizedDescription)")
                     }
                 } else {
-                    useProxy = false
+                    hasProxy = false
                     do {
                         DDLogInfo("[connect] \(header.host):\(header.port)")
                         try forwardSocket.connect(toHost: header.host, onPort: header.port, withTimeout: connectTimeout)
@@ -134,7 +134,7 @@ extension HttpSession: GCDAsyncSocketDelegate {
                         DDLogError("[http] Connect to host failed: \(e.localizedDescription)")
                     }
                 } else {
-                    useProxy = false
+                    hasProxy = false
                     do {
                         DDLogInfo("[connect] \(header.host):\(header.port)")
                         try forwardSocket.connect(toHost: header.host, onPort: header.port, withTimeout: connectTimeout)
@@ -206,7 +206,7 @@ extension HttpSession: GCDAsyncSocketDelegate {
     }
     
     public func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
-        if let proxy = self.forwardProxy, useProxy {
+        if let proxy = self.forwardProxy, hasProxy {
             if proxy.type == .http {
                 status = .forwarding
                 DDLogInfo("[http] forward http to http proxy")

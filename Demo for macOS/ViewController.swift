@@ -33,8 +33,8 @@ class ViewController: NSViewController {
     }
 
     @IBAction func btnClicked(_ sender: Any) {
-//        server.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 1086)
-//        server.start()
+        httpServer.forwardProxy = ForwardProxy(type: .http, host: "127.0.0.1", port: 8888)
+        _ = httpServer.start(on: 8900)
 //        let file = Bundle(for: KingHttpProxy.self).path(forResource: "Surge", ofType: "conf")
 //        ACL.shared?.load(configFile: file!)
 //        guard httpServer.start(on: 8898) > 0 else { return }

@@ -77,7 +77,7 @@ public class SocksSession: NSObject {
     private let readTimeout: TimeInterval = 5
 
     private var forwardProxy: ForwardProxy?
-    private var useProxy = false
+    private var hasProxy = false
     private var state: SocksState
     private var destinationHost: String = ""
     private var destinationPort: UInt16 = 80
@@ -101,7 +101,7 @@ public class SocksSession: NSObject {
             case .http:
                 DDLogError("Not support forward to http proxy")
             case .socks5:
-                useProxy = true
+                hasProxy = true
             case .shadowsocks:
                 DDLogError("Not support forward to shadowsocks proxy")
                 break

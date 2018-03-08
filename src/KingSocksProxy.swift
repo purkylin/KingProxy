@@ -13,6 +13,7 @@ import CocoaAsyncSocket
 public class KingSocksProxy: NSObject {
     /// Set forward proxy
     public var forwardProxy: ForwardProxy?
+    public var isRunning = false
     
     private var address = "127.0.0.1"
     private var port: UInt16 = 0
@@ -38,11 +39,18 @@ public class KingSocksProxy: NSObject {
     public func start(on port: UInt16) -> UInt16 {
         self.port = port
         do {
+            if isRunning {
+                DDLogError("[socks] Error: server is running")
+                return 0
+            }
+            
             #if os(macOS)
                 try listenSocket.accept(onPort: port)
             #else
                 try listenSocket.accept(onInterface: address, port: port)
             #endif
+            
+            isRunning = true
             self.port = listenSocket.localPort
             DDLogInfo("[http] Start socks proxy on port:\(port) ok")
             return self.port

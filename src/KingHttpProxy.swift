@@ -31,6 +31,7 @@ public struct ForwardProxy {
 public class KingHttpProxy: NSObject {
     /// Set forward proxy
     public var forwardProxy: ForwardProxy?
+    public var isRunning = false
     
     private var address: String = "127.0.0.1"
     private var port: UInt16 = 0
@@ -55,11 +56,17 @@ public class KingHttpProxy: NSObject {
     /// Start server, return lister port if succes else return 0
     public func start(on port: UInt16) -> UInt16 {
         do {
+            if isRunning {
+                DDLogError("[http] Error: Server is running")
+                return 0
+            }
+            
 #if os(macOS)
         try listenSocket.accept(onPort: port)
 #else
         try listenSocket.accept(onInterface: address, port: port)
 #endif
+            isRunning = true
             self.port = listenSocket.localPort
             DDLogInfo("[http] Start http proxy on port:\(port) ok")
             return self.port
