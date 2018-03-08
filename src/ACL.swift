@@ -151,6 +151,7 @@ public class ACL {
                 DDLogInfo("[acl] fake ip: host")
                 return true
             }
+            domain = host
         } else {
             domain = DNSServer.default.reverse(ip: ip) ?? ""
         }
@@ -170,8 +171,11 @@ public class ACL {
                 }
             case .domainSuffix:
                 if domain.lowercased().hasSuffix(rule.value!) {
-                    DDLogInfo("use rule: \(rule.description)")
-                    return rule.action == .proxy
+                    let trimedString = domain.dropLast(rule.value!.count)
+                    if trimedString.hasSuffix(".") || trimedString == "" {
+                        DDLogInfo("use rule: \(rule.description)")
+                        return rule.action == .proxy
+                    }
                 }
             case .ip:
                 if match(ip: ip, ipSegment: rule.value!) {
