@@ -109,6 +109,7 @@ extension DNSServer: GCDAsyncUdpSocketDelegate {
 
                 if let address = requestMap[response.id] {
                     listenSocket.send(data, toAddress: address, withTimeout: -1, tag: 0)
+                    requestMap[response.id] = nil
                 }
             }
         } catch let e {
