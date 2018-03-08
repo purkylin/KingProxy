@@ -29,11 +29,10 @@ class KingProxyTests: XCTestCase {
         XCTAssert(ACL.shared!.useProxy(host: "baidu.com") == false)
         XCTAssert(ACL.shared!.useProxy(host: "sina.baidu.com") == true) // not exist
         XCTAssert(ACL.shared!.useProxy(host: "google.com") == true)
-        XCTAssert(ACL.shared!.useProxy(host: "purkylin.com") == false)
-        XCTAssert(ACL.shared!.useProxy(host: "www.purkylin.com") == false)
+        XCTAssert(ACL.shared!.useProxy(host: "purkylin.com") == true)
+        XCTAssert(ACL.shared!.useProxy(host: "www.purkylin.com") == true)
         XCTAssert(ACL.shared!.useProxy(host: "in.com") == true)
         XCTAssert(ACL.shared!.useProxy(host: "twitter.com") == true)
-
     }
     
     func testPerformanceExample() {
