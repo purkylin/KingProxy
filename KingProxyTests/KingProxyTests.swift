@@ -27,9 +27,10 @@ class KingProxyTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         XCTAssert(ACL.shared!.useProxy(host: "baidu.com") == false)
-        XCTAssert(ACL.shared!.useProxy(host: "sina.baidu.com") == false)
+        XCTAssert(ACL.shared!.useProxy(host: "sina.baidu.com") == true) // not exist
         XCTAssert(ACL.shared!.useProxy(host: "google.com") == true)
         XCTAssert(ACL.shared!.useProxy(host: "purkylin.com") == false)
+        XCTAssert(ACL.shared!.useProxy(host: "www.purkylin.com") == false)
         XCTAssert(ACL.shared!.useProxy(host: "in.com") == true)
         XCTAssert(ACL.shared!.useProxy(host: "twitter.com") == true)
 

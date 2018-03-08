@@ -27,6 +27,10 @@
 		0DBFFFCE204E94290003A430 /* gfwlist.data in Resources */ = {isa = PBXBuildFile; fileRef = 0DBFFFCC204E94290003A430 /* gfwlist.data */; };
 		0DBFFFDC204FACB50003A430 /* KingProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBFFFDB204FACB50003A430 /* KingProxyTests.swift */; };
 		0DBFFFDE204FACB50003A430 /* KingProxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA392D202068DD00B93F0A /* KingProxy.framework */; };
+		0DBFFFE72050F9D40003A430 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA393F20206AE800B93F0A /* CocoaAsyncSocket.framework */; };
+		0DBFFFE82050F9D40003A430 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA393C20206AE700B93F0A /* CocoaLumberjack.framework */; };
+		0DBFFFE92050F9D40003A430 /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA393E20206AE800B93F0A /* CocoaLumberjackSwift.framework */; };
+		0DBFFFEA2050F9D40003A430 /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEA393D20206AE700B93F0A /* MMDB.framework */; };
 		0DEA38AA20201F4200B93F0A /* KingProxy_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DEA38A820201F4200B93F0A /* KingProxy_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0DEA38B820201F6F00B93F0A /* ACL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA38B020201F6F00B93F0A /* ACL.swift */; };
 		0DEA38B920201F6F00B93F0A /* Surge.conf in Resources */ = {isa = PBXBuildFile; fileRef = 0DEA38B120201F6F00B93F0A /* Surge.conf */; };
@@ -193,6 +197,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DBFFFDE204FACB50003A430 /* KingProxy.framework in Frameworks */,
+				0DBFFFE72050F9D40003A430 /* CocoaAsyncSocket.framework in Frameworks */,
+				0DBFFFE82050F9D40003A430 /* CocoaLumberjack.framework in Frameworks */,
+				0DBFFFE92050F9D40003A430 /* CocoaLumberjackSwift.framework in Frameworks */,
+				0DBFFFEA2050F9D40003A430 /* MMDB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +412,7 @@
 				0DBFFFD5204FACB40003A430 /* Sources */,
 				0DBFFFD6204FACB40003A430 /* Frameworks */,
 				0DBFFFD7204FACB40003A430 /* Resources */,
+				0DBFFFEB2051030E0003A430 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -596,6 +605,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0DBFFFEB2051030E0003A430 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/CocoaAsyncSocket.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/CocoaLumberjack.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/CocoaLumberjackSwift.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/MMDB.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 		0DEA391920203A7400B93F0A /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -733,6 +759,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = QJSM3KYT6N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = KingProxyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
@@ -740,6 +770,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 4.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -750,6 +781,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = QJSM3KYT6N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = KingProxyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
@@ -757,6 +792,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 4.0;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
