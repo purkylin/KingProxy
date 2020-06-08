@@ -11,9 +11,10 @@
 * Partial support surge rule
 * DNS server
 ## Requirement
-* Swift4
+* Swift5
 * Xcode9
 * iOS 10.0/macOS 10.12
+* Manual download GeoLite2-Country.mmdb file
 ## Usage
 ```swift
 ACL.shared?.load(configFile: "your config file")
