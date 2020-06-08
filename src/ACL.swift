@@ -61,7 +61,13 @@ public class ACL {
     public var isEmpty: Bool { return rules.count == 0 }
     
     public init?() {
-        guard let db = MMDB() else {
+        
+        guard let path = Bundle(for: ACL.self).path(forResource: "GeoLite2-Country", ofType: "mmdb") else {
+            DDLogError("Can't find mmdb database")
+            return nil
+        }
+        
+        guard let db = MMDB(path) else {
             DDLogError("Init mmdb failed")
             return nil
         }

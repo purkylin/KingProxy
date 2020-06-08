@@ -25,7 +25,8 @@ class ViewController: UIViewController {
         DDLog.add(DDASLLogger.sharedInstance) // TTY = Xcode console
         
         delay(1) {
-            // ACL.shared?.load(configFile: "your config file")
+            _ = ACL.shared
+//             ACL.shared?.load(configFile: "your config file")
             self.server.forwardProxy = ForwardProxy(type: .socks5, host: "127.0.0.1", port: 8012)
             _ = self.server.start()
         }

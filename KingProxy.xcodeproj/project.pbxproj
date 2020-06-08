@@ -85,6 +85,8 @@
 		0DEA396E2022B69300B93F0A /* KingSocksProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA396C2022B69300B93F0A /* KingSocksProxy.swift */; };
 		0DEA39702022B86400B93F0A /* SocksSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA396F2022B86400B93F0A /* SocksSession.swift */; };
 		0DEA39712022B86400B93F0A /* SocksSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEA396F2022B86400B93F0A /* SocksSession.swift */; };
+		3155BD80248E370A008C44C0 /* GeoLite2-Country.mmdb in Resources */ = {isa = PBXBuildFile; fileRef = 31722E80248E35F40009E70A /* GeoLite2-Country.mmdb */; };
+		31722E81248E37DC0009E70A /* GeoLite2-Country.mmdb in Resources */ = {isa = PBXBuildFile; fileRef = 31722E80248E35F40009E70A /* GeoLite2-Country.mmdb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,6 +191,7 @@
 		0DEA39622021B1F400B93F0A /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = Carthage/Build/Mac/CocoaLumberjack.framework; sourceTree = "<group>"; };
 		0DEA396C2022B69300B93F0A /* KingSocksProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingSocksProxy.swift; sourceTree = "<group>"; };
 		0DEA396F2022B86400B93F0A /* SocksSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocksSession.swift; sourceTree = "<group>"; };
+		31722E80248E35F40009E70A /* GeoLite2-Country.mmdb */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GeoLite2-Country.mmdb"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,6 +332,7 @@
 				0DEA38B520201F6F00B93F0A /* HttpSession.swift */,
 				0DEA396F2022B86400B93F0A /* SocksSession.swift */,
 				0DEA38C82020209600B93F0A /* Util.swift */,
+				31722E80248E35F40009E70A /* GeoLite2-Country.mmdb */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -514,6 +518,7 @@
 					};
 					0DEA38A520201F4200B93F0A = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					0DEA39062020218E00B93F0A = {
@@ -569,6 +574,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3155BD80248E370A008C44C0 /* GeoLite2-Country.mmdb in Resources */,
 				0DBFFFCD204E94290003A430 /* gfwlist.data in Resources */,
 				0DEA38B920201F6F00B93F0A /* Surge.conf in Resources */,
 			);
@@ -588,6 +594,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31722E81248E37DC0009E70A /* GeoLite2-Country.mmdb in Resources */,
 				0DBFFFCE204E94290003A430 /* gfwlist.data in Resources */,
 				0DEA39362020695B00B93F0A /* Surge.conf in Resources */,
 			);
@@ -912,6 +919,7 @@
 		0DEA38AC20201F4200B93F0A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -931,7 +939,7 @@
 				PRODUCT_MODULE_NAME = KingProxy;
 				PRODUCT_NAME = KingProxy;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -939,6 +947,7 @@
 		0DEA38AD20201F4200B93F0A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -958,7 +967,7 @@
 				PRODUCT_MODULE_NAME = KingProxy;
 				PRODUCT_NAME = KingProxy;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1006,6 +1015,7 @@
 		0DEA3933202068DD00B93F0A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1035,6 +1045,7 @@
 		0DEA3934202068DD00B93F0A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
