@@ -1,4 +1,5 @@
-# KingProxy
+# DEPRECATED (Use new library [nio-proxy](https://github.com/purkylin/proxy-nio))
+# KingProxy 
 
  [![Join the chat at https://telegram.me/NEKitGroup](https://img.shields.io/badge/chat-on%20Telegram-blue.svg)](https://telegram.me/KingProxyTalk)
  [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) 
